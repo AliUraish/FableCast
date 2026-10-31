@@ -1,0 +1,35 @@
+{
+  "name": "fablecast",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "tsx tests/run.ts",
+    "check:mono": "tsx scripts/check-mono.ts",
+    "sheet": "tsx scripts/sheet.ts",
+    "render": "tsx scripts/render.ts",
+    "warm": "tsx scripts/warm.ts",
+    "golden": "tsx scripts/golden.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "convex": "^1.49.0",
+    "geist": "^1.9.0",
+    "next": "^16.4.3",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "zod": "^3.25.76",
+    "zod-to-json-schema": "^3.25.2"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "playwright": "^1.64.1",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3"
+  }
+}

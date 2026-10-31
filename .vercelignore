@@ -1,0 +1,8 @@
+.env
+.env.*
+!.env.example
+.cache
+output
+node_modules
+.next
+.claude
