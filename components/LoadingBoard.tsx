@@ -58,9 +58,9 @@ export function LoadingBoard(props: {
       </div>
       {props.failed ? (
         <>
-          <p className="serif-title" style={{ margin: 0 }}>The pen ran dry. Let&apos;s play a ready story.</p>
+          <p className="serif-title" style={{ margin: 0 }}>The pen ran dry. Let&apos;s try another story.</p>
           {props.message && <p className="mono dim" style={{ margin: 0 }}>{props.message}</p>}
-          <Link href="/story/golden" className="btn btn-primary">Play a ready story</Link>
+          <Link href="/" className="btn btn-primary">New story</Link>
         </>
       ) : (
         <>
