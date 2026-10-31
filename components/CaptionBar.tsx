@@ -2,11 +2,18 @@
 // Captions live outside the board: spoken words full, upcoming 35%, current word inverted.
 import { Fragment, useEffect, useRef, useState } from "react";
 import { wrapWords } from "@/engine/captions";
-import type { TLLine } from "@/engine/types";
+import type { TLLine, Timeline } from "@/engine/types";
 
 const norm = (s: string) => s.toLowerCase().replace(/[^\p{L}\p{N}']/gu, "");
 
-export function CaptionBar({ line, wordIndex }: { line: TLLine | null; wordIndex: number }) {
+/** "Narrator" for narration, else the speaking character's name (falls back to its id). */
+export function speakerName(tl: Timeline | null | undefined, line: TLLine | null): string | null {
+  if (!line) return null;
+  if (!line.speaker || line.speaker === "narrator") return "Narrator";
+  return tl?.characters.find((c) => c.id === line.speaker)?.name ?? line.speaker;
+}
+
+export function CaptionBar({ line, wordIndex, speaker }: { line: TLLine | null; wordIndex: number; speaker?: string | null }) {
   const ref = useRef<HTMLDivElement | null>(null);
   const [maxChars, setMaxChars] = useState(48);
 
@@ -39,6 +46,7 @@ export function CaptionBar({ line, wordIndex }: { line: TLLine | null; wordIndex
       {line &&
         rows.map((row, r) => (
           <span className="caption-line" key={`${line.global}-${r}`}>
+            {r === 0 && speaker && <span className="caption-speaker">{speaker}:</span>}
             {row.map((w) => {
               const idx = i++;
               const cls =
