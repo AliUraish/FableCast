@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { useQuery } from "convex/react";
@@ -32,7 +31,6 @@ export function HomeForm() {
   const [theme] = useTheme();
   const [text, setText] = useState("");
   const [left, setLeft] = useState(MAX_STORIES);
-  const [goldenTitle, setGoldenTitle] = useState<string | null>(null);
   const tonight = useTonight();
   const [tone, setTone] = useState<Tone>(DEFAULT_TONE);
   const leftNow = tonight ? tonight.left : left;
@@ -41,13 +39,6 @@ export function HomeForm() {
   useEffect(() => {
     setLeft(storiesLeft());
     setTone(loadTone());
-    // Also warms the golden-story chunk so it plays offline later.
-    import("@/data/golden/story.json")
-      .then((m) => {
-        const s = ((m as { default?: unknown }).default ?? m) as { bible?: { title?: string } };
-        if (s?.bible?.title) setGoldenTitle(s.bible.title);
-      })
-      .catch(() => {});
   }, []);
 
   const premise = text.trim();
@@ -116,12 +107,15 @@ export function HomeForm() {
           </button>
         ))}
       </div>
-      <div className="row">
-        <span className="mono dim">READY STORIES</span>
-        <Link className="btn chip" href="/story/golden">
-          {goldenTitle ?? "A READY STORY"} <PixelIcon name="arrow" size={10} />
-        </Link>
-      </div>
+      <p className="credits-note">
+        Due to limited ElevenLabs credits, each story is short, but it includes every{" "}
+        <span className="nowrap">
+          expression.
+          <span className="credits-face" role="img" aria-label="happy face">
+            <PixelIcon name="smile" size={18} />
+          </span>
+        </span>
+      </p>
     </main>
   );
 }
