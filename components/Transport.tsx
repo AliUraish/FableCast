@@ -28,9 +28,8 @@ export function Transport(props: {
         <PixelIcon name={props.playing ? "pause" : "play"} size={16} />
       </button>
       {props.live ? (
-        <div className="progress-line" role="progressbar" aria-label="Story progress" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(props.progress * 100)}>
-          <span style={{ width: `${Math.round(Math.max(0, Math.min(1, props.progress)) * 1000) / 10}%` }} />
-        </div>
+        // Live telling: no slider at all; the scrub bar appears only once the story has ended.
+        <span className="transport-spacer" aria-hidden="true" />
       ) : (
         <input
           className="scrub"
@@ -51,7 +50,7 @@ export function Transport(props: {
         PAGE {Math.min(props.page + 1, Math.max(1, props.pages))}/{props.pages}
       </span>
       {!props.live && (
-        <button type="button" className="play" onClick={props.onRestart} aria-label="Restart" title="Restart">
+        <button type="button" className="play" onClick={props.onRestart} aria-label="Rewind" title="Rewind">
           <PixelIcon name="restart" size={16} />
         </button>
       )}
