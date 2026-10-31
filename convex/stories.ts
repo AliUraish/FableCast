@@ -31,7 +31,7 @@ export const create = mutation({
       .withIndex("by_session", (q) => q.eq("sessionId", sid).gt("createdAt", since))
       .take(max + 1);
     if (recent.length >= max) {
-      throw new ConvexError({ code: "LIMIT", message: "That's all the new stories for this browser for now. Try a ready story." });
+      throw new ConvexError({ code: "LIMIT", message: "That's all the new stories for this browser for now. Try again a little later." });
     }
     // Daily runs (all users): counted here, in the same transaction, so two taps can never both take the last one.
     const runs = num("DAILY_STORY_RUNS", 6);
@@ -39,7 +39,7 @@ export const create = mutation({
     const usage = await ctx.db.query("usage").withIndex("by_day", (q) => q.eq("day", day)).unique();
     const used = usage?.stories ?? 0;
     if (runs > 0 && used >= runs) {
-      throw new ConvexError({ code: "LIMIT", message: `That's all ${runs} stories for tonight. Try a ready story.` });
+      throw new ConvexError({ code: "LIMIT", message: `That's all ${runs} stories for tonight. See you tomorrow night!` });
     }
     if (usage) await ctx.db.patch(usage._id, { stories: used + 1 });
     else await ctx.db.insert("usage", { day, claudeTokens: 0, elevenChars: 0, stories: 1 });
