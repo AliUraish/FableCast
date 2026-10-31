@@ -10,7 +10,7 @@ import { heuristicStaging } from "./mock";
 import { errMsg } from "./resilience";
 import { SceneStaging, type StoryBible, type TimedAction } from "./schemas";
 
-export const STAGING_PROMPT_VERSION = "staging-v2"; // v2: story-specific backdrops, custom props, more action
+export const STAGING_PROMPT_VERSION = "staging-v4"; // v4: layered compositions, detailed hero props
 
 const SYSTEM = [
   "You are the Stage Director for Fablecast, a bedtime storybook drawn by a pen while it is told.",
@@ -19,9 +19,14 @@ const SYSTEM = [
   "DRAW THIS STORY, NOT A GENERIC ONE",
   "- Pick the backdrop that fits THIS scene's place (meadow, seaside, village, sky, hilltop, cave, bedroom, night_forest).",
   "  Do not default to night_forest: a home is a bedroom or village, water is seaside, flying is sky, open grass is meadow.",
+  "- COMPOSE A FULL PICTURE in three layers: sky (moon, stars, bats, clouds), middle (a house, trees, the scene's big object),",
+  "  and foreground (small props near the characters). Give every scene one big HERO object drawn custom (size 0.3-0.5).",
   "- Draw the objects the lines mention. At least 2 CUSTOM props drawn for this story's own things (a kite, a teapot, an igloo,",
-  "  a snowflake, a boat, a cake...): 3 to 6 paths each, clean recognisable outlines with a few inner details (windows, stripes,",
-  "  a face, a handle). Use presets for generic things (moon, star, tree, house, cloud...). Big, obvious, easy for a child to read.",
+  "  a snowflake, a boat, a cake...): 4 to 6 paths each, clean recognisable outlines PLUS inner details (windows, stripes,",
+  "  planks, a face, a handle, buttons, leaves), drawn at size 0.15 or more so the details read. Use presets for generic things (moon, star, tree, house, cloud...). Big, obvious, easy for a child to read.",
+  "- IT IS HALLOWEEN NIGHT: every scene also has at least 2 friendly Halloween props from the presets pumpkin (a jack-o'-lantern),",
+  "  bat (high in the sky, y 0.1-0.3), web (in an upper corner), candy, ghost (a cute floating sheet ghost) and witch_hat,",
+  "  placed where they make sense (a pumpkin by a door, bats across the moon, candy on the path). Cute and cozy, never scary.",
   "- INTERACTIVE: every prop tappable, with a fitting reaction (pop for balloons and bubbles, glow for lights, stars and magic,",
   "  wiggle for plants, animals and soft things). Reveal props with `appear` exactly when a line mentions them.",
   "",

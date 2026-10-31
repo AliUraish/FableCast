@@ -56,7 +56,7 @@ export function drawBlob(ctx: Ctx, skin: CharacterSkin, pose: CharPose, o: CharD
   ctx.save();
   ctx.translate(4 * u, -54 * u + m.headDy);
   ctx.rotate(m.headTilt * 0.6);
-  drawFace(ctx, m.face, 0, 0, u * 1.25, w("face"), o, lw, F.accessory === "glasses", pal.accent);
+  drawFace(ctx, m.face, 0, 0, u * 1.25, w("face"), o, lw, F.accessory === "glasses", pal.accent, { nose: F.nose, whiskers: F.whiskers });
   ctx.restore();
   if (F.accessory === "hat") drawHat(ctx, body, u, xp("hat"), so("hat", { occlude: true, fill: pal.accent }));
   if (m.zzz > 0) drawZzz(ctx, 26 * u, -86 * u, u, m.zzz, o, lw);

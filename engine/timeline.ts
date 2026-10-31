@@ -6,8 +6,8 @@ import { NARRATOR_AGENT, type Action, type LineDecision, type MoodAgent, type Ti
 import { lint } from "./lint";
 import type { TLAction, TLEmphasis, TLLine, TLScene, ThemeMode, Timeline } from "./types";
 
-export const PAGE_LEAD = 1.6; // backdrop draws and "PAGE N" shows before the voice starts
-export const SCENE_TAIL = 1.2; // breath after the last line
+export const PAGE_LEAD = 1.3; // backdrop draws and "PAGE N" shows before the voice starts
+export const SCENE_TAIL = 0.9; // breath after the last line
 export const TURN = 0.6; // page-turn wipe at the end of each scene
 export const END_HOLD = 3.4; // THE END
 
@@ -101,7 +101,7 @@ export function compile(story: PreparedStory): Timeline {
         keywordTime = hit?.start;
       }
       const tl: TLLine = {
-        scene: i, index: li, global: global++, character: ln.character, text: ln.text,
+        scene: i, index: li, global: global++, character: ln.character, speaker: ln.speaker ?? "narrator", text: ln.text,
         performed: res.performed[li] ?? ln.text, start: audioStart + s, end: audioStart + e, words: abs,
         decision, agentId: decision.agentId, focus: ln.focus, keyword: ln.keyword, keywordTime,
       };

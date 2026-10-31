@@ -254,6 +254,7 @@ const SKY: PropPreset[] = ["moon", "star", "cloud", "sun"];
 const PROP_SIZE: Record<PropPreset, number> = {
   moon: 0.13, star: 0.07, cloud: 0.15, sun: 0.14, tree: 0.46, house: 0.4, cave: 0.45, bed: 0.28, lantern: 0.14,
   rock: 0.13, flower: 0.12, door: 0.34, hill: 0.32, box: 0.13, bush: 0.18, window: 0.2,
+  pumpkin: 0.16, bat: 0.08, web: 0.2, candy: 0.08, ghost: 0.2, witch_hat: 0.14,
 };
 const PROP_WORDS: [RegExp, PropPreset][] = [
   [/\bmoon/, "moon"], [/\bstars?\b|twinkl/, "star"], [/\bcloud/, "cloud"], [/\bsun\b|sunrise|morning/, "sun"],

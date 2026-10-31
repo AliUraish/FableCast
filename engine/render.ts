@@ -1,16 +1,16 @@
 // renderAt(ctx, timeline, t): the whole board as a pure function of t (plus wall-clock tap reactions).
 // The caller sets the device-pixel transform; we draw in board units (1280x720 or 720x960).
-import type { CharacterSkin } from "@/lib/schemas";
+import type { CharacterSkin, Prop } from "@/lib/schemas";
 import { REACTION_MS } from "./interact";
 import { drawBackdrop } from "./presets/backdrops";
 import { drawProp, propRect } from "./presets/props";
-import { ease, ring, around, seg, sparkle, stroke, write, clamp01, oval } from "./primitives";
+import { ease, ring, around, seg, sparkle, stroke, write, clamp01, curve } from "./primitives";
 import { characterRect, drawCharacter } from "./rigs";
 import { boardTheme } from "./state";
 import { bg, fg } from "./themes";
 import { TURN } from "./timeline";
 import { cameraAt, characterAt, charHeight, expressionAt, propAt, sceneAt, type Camera } from "./tracks";
-import type { Board, Ctx, HitRegion, InkCtx, Rect, RenderOptions, Timeline } from "./types";
+import type { Board, Ctx, HitRegion, InkCtx, Pt, Rect, RenderOptions, Timeline } from "./types";
 
 const camRect = (r: Rect, cam: Camera, board: Board): Rect => ({
   x: (r.x - cam.cx) * cam.z + board.w / 2,
@@ -161,21 +161,44 @@ export function drawPortrait(ctx: Ctx, skin: CharacterSkin, w: number, h: number
   ctx.restore();
 }
 
-/** Loading doodle: a moon and two stars drawn stroke by stroke, looping. */
+/**
+ * Loading scene while a story is written: the pen sketches a little Halloween night, one thing at a time
+ * (ground, moon, jack-o'-lantern, a bobbing ghost, bats flying across, twinkling stars), holds, fades, repeats.
+ * Draws in a 1280x720 board; `seconds` is wall time since loading began.
+ */
 export function drawDoodle(ctx: Ctx, w: number, h: number, ink: InkCtx, seconds: number): void {
   ctx.save();
   ctx.fillStyle = bg(ink.theme);
   ctx.fillRect(0, 0, w, h);
-  const cycle = 3.2;
-  const k = (seconds % cycle) / cycle;
-  const p = seg(k, 0, 0.7);
-  const fade = 1 - seg(k, 0.88, 1);
-  const r = Math.min(w, h) * 0.22;
-  const o = { ink, width: 3, seed: "doodle", wobble: 0.3, alpha: fade };
-  // Crescent: outer arc and inner arc.
-  stroke(ctx, oval(w / 2, h / 2, r, r, 48, 0.62, -Math.PI * 0.62), seg(p, 0, 0.55), o);
-  stroke(ctx, oval(w / 2 + r * 0.42, h / 2 - r * 0.12, r * 0.78, r * 0.78, 48, 0.5, Math.PI * 0.62), seg(p, 0.5, 0.8), o);
-  sparkle(ctx, w / 2 + r * 1.6, h / 2 - r * 0.9, r * 0.28, seg(p, 0.75, 0.95), o);
-  sparkle(ctx, w / 2 - r * 1.5, h / 2 + r * 0.5, r * 0.2, seg(p, 0.85, 1), o);
+  const board: Board = { w, h, margin: 0, groundY: h * 0.84, orientation: "landscape" };
+  const cycle = 10;
+  const c = seconds % cycle;
+  const fade = 1 - seg(c, cycle - 0.8, cycle);
+  const still = !!ink.reducedMotion;
+  const o = { ink, width: 3, seed: "wait", wobble: 0.25, alpha: fade };
+  const at = (x: number, y: number): Pt => [x * w, y * h];
+  const prop = (id: string, preset: Prop["preset"], x: number, y: number, size: number): Prop =>
+    ({ id, preset, at: [x, y], size, tappable: false, reaction: "wiggle" });
+
+  // Ground line with a gentle hill.
+  stroke(ctx, curve([w * 0.04, h * 0.84], [w * 0.5, h * 0.76], [w * 0.96, h * 0.84], 40), seg(c, 0, 0.9), o);
+  // Moon, top right.
+  drawProp(ctx, prop("moon", "moon", 0.8, 0.22, 0.24), board, seg(c, 0.8, 2.0), { ink, seed: "wait:moon", alpha: fade, at: at(0.8, 0.22) });
+  // Jack-o'-lantern on the hill.
+  drawProp(ctx, prop("pumpkin", "pumpkin", 0.3, 0.71, 0.26), board, seg(c, 2.0, 3.6), { ink, seed: "wait:pumpkin", alpha: fade, at: at(0.3, 0.71) });
+  // A friendly ghost floating and bobbing.
+  const bob = still ? 0 : Math.sin(seconds * 2.2) * 0.02;
+  drawProp(ctx, prop("ghost", "ghost", 0.56, 0.46, 0.3), board, seg(c, 3.6, 5.2), { ink, seed: "wait:ghost", alpha: fade, at: at(0.56, 0.46 + bob) });
+  // Two bats flying across the sky.
+  for (const [i, y] of [[0, 0.16], [1, 0.3]] as const) {
+    const travel = still ? 0.35 + i * 0.2 : ((seconds * (0.07 + i * 0.03) + i * 0.4) % 1.2) - 0.1;
+    drawProp(ctx, prop(`bat${i}`, "bat", travel, y, 0.08), board, seg(c, 5.2 + i * 0.4, 6.2 + i * 0.4), { ink, seed: `wait:bat${i}`, alpha: fade, at: at(travel, y + (still ? 0 : Math.sin(seconds * 6 + i) * 0.012)) });
+  }
+  // Stars twinkle in last.
+  const stars: [number, number, number][] = [[0.14, 0.2, 18], [0.38, 0.12, 12], [0.66, 0.1, 14], [0.92, 0.42, 10], [0.08, 0.5, 10]];
+  stars.forEach(([x, y, r], i) => {
+    const tw = still ? 1 : 0.75 + 0.25 * Math.sin(seconds * 3 + i);
+    sparkle(ctx, x * w, y * h, r * tw, seg(c, 6.4 + i * 0.25, 7.2 + i * 0.25), o);
+  });
   ctx.restore();
 }
