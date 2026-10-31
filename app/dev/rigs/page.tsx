@@ -25,7 +25,26 @@ interface Cell { s: CharacterSkin; label: string; pose?: Partial<CharPose> }
 const EXPR: Expression[] = ["neutral", "happy", "curious", "worried", "scared", "sleepy", "proud"];
 const GEST: GestureKind[] = ["wave", "point", "jump", "shrug", "hug", "hide", "peek", "spin", "sleep", "shiver"];
 
+// Species features: snout, beak, button nose, whiskers.
+const bearS = skin("bear_s", "biped", { ears: "round", tail: "short", nose: "snout" }, "orange", "purple");
+const owlS = skin("owl_s", "biped", { wings: true, ears: "pointy", eyes: "round", nose: "beak" }, "white", "yellow");
+const bunnyS = skin("bunny_s", "biped", { ears: "long", tail: "fluffy", nose: "button", whiskers: true }, "white", "pink");
+const foxS = skin("fox_s", "biped", { ears: "pointy", tail: "fluffy", nose: "snout", whiskers: true }, "green", "orange");
+const penguinS = skin("penguin_s", "blob", { wings: true, nose: "beak", eyes: "round" }, "white", "yellow");
+const mouseS = skin("mouse_s", "blob", { ears: "round", nose: "button", whiskers: true, tail: "long" }, "white", "pink");
+
 const ROWS: { theme: ThemeMode; cells: Cell[] }[] = [
+  {
+    theme: "night",
+    cells: [
+      { s: bearS, label: "bear snout", pose: {} },
+      { s: owlS, label: "owl beak", pose: { expression: "happy" as Expression } },
+      { s: bunnyS, label: "bunny nose", pose: {} },
+      { s: foxS, label: "fox snout", pose: { expression: "curious" as Expression } },
+      { s: penguinS, label: "penguin", pose: {} },
+      { s: mouseS, label: "mouse", pose: { expression: "happy" as Expression } },
+    ],
+  },
   {
     theme: "night",
     cells: [
