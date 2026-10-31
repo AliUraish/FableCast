@@ -10,7 +10,7 @@ import { usePlayback } from "@/hooks/usePlayback";
 import { usePersistedBool } from "@/hooks/usePersisted";
 import { useTheme } from "@/hooks/useTheme";
 import { Board } from "./Board";
-import { CaptionBar } from "./CaptionBar";
+import { CaptionBar, speakerName } from "./CaptionBar";
 import { CastStrip } from "./CastStrip";
 import { DirectorDrawer } from "./DirectorDrawer";
 import { EndOverlay } from "./EndOverlay";
@@ -175,7 +175,13 @@ export function StoryView({ id }: { id: string }) {
           onSeek={pb.seek}
           onRestart={pb.restart}
         />
-        {captionsOn && <CaptionBar line={state?.activeLine ?? null} wordIndex={state?.activeWordIndex ?? -1} />}
+        {captionsOn && (
+          <CaptionBar
+            line={state?.activeLine ?? null}
+            wordIndex={state?.activeWordIndex ?? -1}
+            speaker={speakerName(tl, state?.activeLine ?? null)}
+          />
+        )}
         <CastStrip timeline={tl} state={state} pageTheme={pageTheme} onTap={react} />
       </main>
       {directorOpen && (
