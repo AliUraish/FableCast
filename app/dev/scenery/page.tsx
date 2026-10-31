@@ -26,7 +26,7 @@ const SCENES: { backdrop: Backdrop; props: DemoProp[] }[] = [
   { backdrop: "hilltop", props: [mk("moon", "moon", [0.22, 0.14], 0.18), mk("star", "star", [0.6, 0.3], 0.08)] },
 ];
 
-const PRESETS: PropPreset[] = ["moon", "star", "tree", "house", "cave", "bed", "lantern", "rock", "cloud", "flower", "door", "hill", "box", "bush", "sun", "window"];
+const PRESETS: PropPreset[] = ["moon", "star", "tree", "house", "cave", "bed", "lantern", "rock", "cloud", "flower", "door", "hill", "box", "bush", "sun", "window", "pumpkin", "bat", "web", "candy", "ghost", "witch_hat"];
 
 function Board_({ board, theme, p, backdrop, props, label }: {
   board: Board; theme: ThemeMode; p: number; backdrop?: Backdrop; props: DemoProp[]; label: string;
