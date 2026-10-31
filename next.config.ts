@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
     NEXT_PUBLIC_MAX_STORIES_PER_SESSION: clean(process.env.MAX_STORIES_PER_SESSION, "5"),
     NEXT_PUBLIC_MAX_GENERATION_SECONDS: clean(process.env.MAX_GENERATION_SECONDS, "45"),
     NEXT_PUBLIC_INK_MODE: clean(process.env.INK_MODE, "mono"),
+    NEXT_PUBLIC_VOICE_RATE: clean(process.env.VOICE_RATE, "1.15"),
   },
 };
 
