@@ -1,13 +1,178 @@
 {
   "_note": "ElevenLabs premade (Default) voices. Default voices only exist on accounts created before March 2026 and expire 2026-12-31; verify each with GET /v2/voices and one test line before relying on them. Official replacements are listed per voice.",
   "voices": [
-    { "id": "JBFqnCBsd6RMkjVDRZzb", "name": "George", "slot": "narrator", "age": "adult", "gender": "male", "quality": ["warm", "captivating", "storyteller", "calm", "soft"], "replacement": "6WwXjDDEMyNmFG95zycZ" },
-    { "id": "cgSgspJ2msm6clMCkdW9", "name": "Jessica", "slot": "child_f", "age": "child", "gender": "female", "quality": ["playful", "bright", "warm", "cute", "curious"], "replacement": "g7LVvkPWALzPxOQbF6OE" },
-    { "id": "TX3LPaxmHKxFdv7VOQHJ", "name": "Liam", "slot": "child_m", "age": "child", "gender": "male", "quality": ["young", "energetic", "excited", "small"], "replacement": "ktkP7Nsj67dw2zcplQYt" },
-    { "id": "EXAVITQu4vr4xnSDxMaL", "name": "Sarah", "slot": "adult_f", "age": "adult", "gender": "female", "quality": ["mature", "reassuring", "confident", "soft", "gentle"], "replacement": "OZ0L6eISlOejga3XjDFt" },
-    { "id": "iP95p4xoKVk53GoZ742B", "name": "Chris", "slot": "adult_m", "age": "adult", "gender": "male", "quality": ["charming", "down-to-earth", "kind", "warm"], "replacement": "AaOhDHYJ1XLZk74lXhdE" },
-    { "id": "pqHfZKP75CvOlQylNhV4", "name": "Bill", "slot": "elder", "age": "elder", "gender": "male", "quality": ["wise", "mature", "balanced", "old", "slow"], "replacement": "FrS6cKLB1wg4WYgPa9GW" },
-    { "id": "N2lVS1w4EtoT3dr4eOWO", "name": "Callum", "slot": "creature", "age": "adult", "gender": "male", "quality": ["husky", "trickster", "creature", "gruff", "nervous", "shaky"], "replacement": "fs2OqxduwXgp9foh2xjK" },
-    { "id": "FGY2WhTYpPnrIDTdsKH5", "name": "Laura", "slot": "whimsical", "age": "child", "gender": "female", "quality": ["enthusiast", "quirky", "whimsical", "breathy", "happy"], "replacement": "WQP7cQUF5aAS6Axh5yaa" }
+    {
+      "id": "JBFqnCBsd6RMkjVDRZzb",
+      "name": "George",
+      "slot": "narrator",
+      "age": "adult",
+      "gender": "male",
+      "quality": [
+        "warm",
+        "captivating",
+        "storyteller",
+        "calm",
+        "soft"
+      ],
+      "replacement": "6WwXjDDEMyNmFG95zycZ"
+    },
+    {
+      "id": "cgSgspJ2msm6clMCkdW9",
+      "name": "Jessica",
+      "slot": "child_f",
+      "age": "child",
+      "gender": "female",
+      "quality": [
+        "playful",
+        "bright",
+        "warm",
+        "cute",
+        "curious"
+      ],
+      "replacement": "g7LVvkPWALzPxOQbF6OE"
+    },
+    {
+      "id": "TX3LPaxmHKxFdv7VOQHJ",
+      "name": "Liam",
+      "slot": "child_m",
+      "age": "child",
+      "gender": "male",
+      "quality": [
+        "young",
+        "energetic",
+        "excited",
+        "small"
+      ],
+      "replacement": "ktkP7Nsj67dw2zcplQYt"
+    },
+    {
+      "id": "EXAVITQu4vr4xnSDxMaL",
+      "name": "Sarah",
+      "slot": "adult_f",
+      "age": "adult",
+      "gender": "female",
+      "quality": [
+        "mature",
+        "reassuring",
+        "confident",
+        "soft",
+        "gentle"
+      ],
+      "replacement": "OZ0L6eISlOejga3XjDFt"
+    },
+    {
+      "id": "iP95p4xoKVk53GoZ742B",
+      "name": "Chris",
+      "slot": "adult_m",
+      "age": "adult",
+      "gender": "male",
+      "quality": [
+        "charming",
+        "down-to-earth",
+        "kind",
+        "warm"
+      ],
+      "replacement": "AaOhDHYJ1XLZk74lXhdE"
+    },
+    {
+      "id": "pqHfZKP75CvOlQylNhV4",
+      "name": "Bill",
+      "slot": "elder",
+      "age": "elder",
+      "gender": "male",
+      "quality": [
+        "wise",
+        "mature",
+        "balanced",
+        "old",
+        "slow"
+      ],
+      "replacement": "FrS6cKLB1wg4WYgPa9GW"
+    },
+    {
+      "id": "N2lVS1w4EtoT3dr4eOWO",
+      "name": "Callum",
+      "slot": "creature",
+      "age": "adult",
+      "gender": "male",
+      "quality": [
+        "husky",
+        "trickster",
+        "creature",
+        "gruff",
+        "nervous",
+        "shaky"
+      ],
+      "replacement": "fs2OqxduwXgp9foh2xjK"
+    },
+    {
+      "id": "FGY2WhTYpPnrIDTdsKH5",
+      "name": "Laura",
+      "slot": "whimsical",
+      "age": "child",
+      "gender": "female",
+      "quality": [
+        "enthusiast",
+        "quirky",
+        "whimsical",
+        "breathy",
+        "happy"
+      ],
+      "replacement": "WQP7cQUF5aAS6Axh5yaa"
+    },
+    {
+      "id": "pFZP5JQG7iQjIQuC4Bku",
+      "name": "Lily",
+      "slot": "storyteller_f",
+      "age": "adult",
+      "gender": "female",
+      "quality": [
+        "velvety",
+        "actress",
+        "warm",
+        "british",
+        "expressive",
+        "storyteller"
+      ]
+    },
+    {
+      "id": "nPczCjzI2devNBz1zQrb",
+      "name": "Brian",
+      "slot": "storyteller_m",
+      "age": "adult",
+      "gender": "male",
+      "quality": [
+        "deep",
+        "resonant",
+        "comforting",
+        "warm",
+        "storyteller"
+      ]
+    },
+    {
+      "id": "Xb7hH8MSUJpSbSDYk0k2",
+      "name": "Alice",
+      "slot": "adult_f2",
+      "age": "adult",
+      "gender": "female",
+      "quality": [
+        "clear",
+        "engaging",
+        "british",
+        "kind"
+      ]
+    },
+    {
+      "id": "onwK4e9ZLuTAKqWW03F9",
+      "name": "Daniel",
+      "slot": "adult_m2",
+      "age": "adult",
+      "gender": "male",
+      "quality": [
+        "steady",
+        "british",
+        "calm"
+      ]
+    }
   ]
 }

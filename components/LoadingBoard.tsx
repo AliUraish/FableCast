@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { drawDoodle } from "@/engine/render";
+import { BounceTitle } from "./BounceTitle";
 import type { ThemeMode } from "@/engine/types";
 import type { StatusLine } from "@/lib/client/loader";
 import { INK_MODE } from "@/lib/client/session";
@@ -54,7 +55,7 @@ export function LoadingBoard(props: {
   return (
     <div className="loading">
       <div className="board-wrap">
-        <canvas ref={ref} className="board-canvas" style={{ aspectRatio: "16 / 9", cursor: "default" }} role="img" aria-label="A pen doodles a moon while the story is prepared" />
+        <canvas ref={ref} className="board-canvas" style={{ aspectRatio: "16 / 9", cursor: "default" }} role="img" aria-label="A pen sketches a little Halloween night while your story is written" />
       </div>
       {props.failed ? (
         <>
@@ -64,10 +65,11 @@ export function LoadingBoard(props: {
         </>
       ) : (
         <>
-          <div className="row between">
-            <h1 className="pixel-display" style={{ margin: 0 }}>DRAWING PAGE 1</h1>
+          <div className="row between" style={{ alignItems: "flex-end" }}>
+            <BounceTitle text="PLEASE WAIT" />
             <span className="pixel-label" aria-label="Elapsed">{fmt(props.elapsed)}</span>
           </div>
+          <p className="mono dim" style={{ margin: 0 }}>THE PEN IS WRITING AND DRAWING YOUR STORY</p>
           <ul className="status-lines" aria-live="polite">
             {props.status.map((s) => (
               <li key={s.key} className={s.state === "pending" ? "dim" : undefined}>
