@@ -778,3 +778,35 @@ button:disabled {
 @media (prefers-reduced-motion: reduce) {
   .bounce-ch { animation: none; }
 }
+
+/* Home: the short-story note, in Geist Pixel at full ink, with a pixel happy face kept on its line. */
+.credits-note {
+  margin: 4px 0 0;
+  font-family: var(--pixel);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--fg);
+}
+.nowrap {
+  white-space: nowrap;
+}
+.credits-face {
+  display: inline-block;
+  vertical-align: -3px;
+  margin-left: 8px;
+}
+
+/* Live telling: the transport keeps play/pause and the time, with nothing to scrub. */
+.transport-spacer {
+  flex: 1;
+}
+
+/* Captions: who is talking, before their words ("Narrator:", "Bruno:"). */
+.caption-speaker {
+  font-family: var(--mono);
+  font-size: 0.6em;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  vertical-align: 0.25em;
+  margin-right: 0.6em;
+}
