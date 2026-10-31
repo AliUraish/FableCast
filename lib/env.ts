@@ -53,6 +53,8 @@ export function env() {
     maxStoriesPerSession: num("MAX_STORIES_PER_SESSION", 5),
     maxDailyClaudeTokens: num("MAX_DAILY_CLAUDE_TOKENS", 500000),
     maxDailyElevenChars: num("MAX_DAILY_ELEVEN_CHARS", 10000),
+    // Narrator voice: a pool name ("lily", "brian", "george") or an ElevenLabs voice id. Empty = George.
+    narratorVoice: str("NARRATOR_VOICE", ""),
     // Fully voiced stories per day; each story is sized to MAX_DAILY_ELEVEN_CHARS / DAILY_STORY_RUNS.
     dailyStoryRuns: num("DAILY_STORY_RUNS", 6),
     mockClaude: flag("MOCK_CLAUDE"),

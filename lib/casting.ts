@@ -2,6 +2,7 @@
 // assign the best unused one, keep it for the whole story. narrator_default always gets the narrator slot.
 import voicesFile from "@/data/voices.json";
 import type { Casting } from "./api-types";
+import { env } from "./env";
 import { NARRATOR, NARRATOR_AGENT, type Line, type MoodAgent, type StoryBible } from "./schemas";
 
 interface PoolVoice { id: string; name: string; slot: string; age: string; gender: string; quality: string[] }
@@ -26,8 +27,13 @@ const entry = (v: PoolVoice) => ({ voiceId: v.id, name: v.name, slot: v.slot });
 
 /** agentId -> voice, plus `char:<id>` entries (VOICE_MODE=cast or locked). The narrator's gender follows the bible. */
 export function castVoices(bible: StoryBible): Casting {
+  // The narrator is one storyteller voice for every story (NARRATOR_VOICE picks it; default George);
+  // characters get their own voices and never share the narrator's.
+  const want = env().narratorVoice.toLowerCase();
   const narrator =
-    (bible.narrator?.gender === "female" ? POOL.find((v) => v.slot === "adult_f") : POOL.find((v) => v.slot === "narrator")) ?? POOL[0];
+    (want && POOL.find((v) => v.id.toLowerCase() === want || v.name.toLowerCase() === want)) ||
+    POOL.find((v) => v.slot === "narrator") ||
+    POOL[0];
   const casting: Casting = { [NARRATOR_AGENT]: entry(narrator) };
   const used = new Set<string>([narrator.id]);
   for (const a of bible.agents) {

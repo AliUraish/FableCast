@@ -118,7 +118,12 @@ export async function runScene(req: SceneRequest): Promise<SceneResult> {
   metrics.claudeTokens += routed.claudeTokens + staged.tokens;
   metrics.resolvedJevModel = routed.resolvedJevModel;
 
-  const decisions: LineDecision[] = routed.decisions;
+  // Claude picks each line's face so every story shows every expression; Jev still decides the performer,
+  // intensity, pause and emphasis.
+  const decisions: LineDecision[] = routed.decisions.map((d, i) => {
+    const face = scene.lines[i]?.expression;
+    return face ? { ...d, expression: face } : d;
+  });
   const ttsLines = voiced.lines;
   const audio = voiced.audio;
   metrics.ms = Date.now() - t0;
