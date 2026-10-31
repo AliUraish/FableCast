@@ -38,6 +38,9 @@ export const CharacterSkin = z.object({
     spikes: z.boolean().default(false),
     eyes: z.enum(["dots", "round", "sleepy"]).default("dots"),
     accessory: z.enum(["none", "scarf", "hat", "cape", "glasses"]).default("none"),
+    // Species read: a bear or fox has a snout, an owl or penguin a beak, a bunny or mouse a button nose.
+    nose: z.enum(["none", "button", "snout", "beak"]).optional(),
+    whiskers: z.boolean().optional(),
   }),
   scale: z.number().min(0.6).max(1.6).default(1),
   // Who this character sounds like; casting picks a matching ElevenLabs voice (lib/casting.ts).
@@ -57,6 +60,8 @@ export const Line = z.object({
   performed: z.string().max(400).optional(),
   // Who SAYS the words: a character id for dialogue, else "narrator". Picks the voice.
   speaker: z.string().optional(),
+  // The face the line's character shows. Each story uses every expression at least once.
+  expression: z.enum(["neutral", "happy", "curious", "worried", "scared", "sleepy", "proud"]).optional(),
   focus: z.string().optional(), // id of a character or prop the line draws attention to
   keyword: z.string().optional(), // a word in `text` where emphasis should land
 });
@@ -93,6 +98,8 @@ export type PenPath = z.infer<typeof PenPath>;
 export const PropPreset = z.enum([
   "moon", "star", "tree", "house", "cave", "bed", "lantern", "rock",
   "cloud", "flower", "door", "hill", "box", "bush", "sun", "window",
+  // Halloween night
+  "pumpkin", "bat", "web", "candy", "ghost", "witch_hat",
 ]);
 export type PropPreset = z.infer<typeof PropPreset>;
 

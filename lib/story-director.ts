@@ -12,7 +12,7 @@ import { errMsg } from "./resilience";
 import { NARRATOR, StoryBible, type Tone } from "./schemas";
 import { DEFAULT_TONE, samePerformance, TONES } from "./tones";
 
-export const STORY_PROMPT_VERSION = "story-v5"; // v5: premise-specific, voices + speakers, natural pace
+export const STORY_PROMPT_VERSION = "story-v11"; // v11: small, sensible stories
 
 export function storyWords(b: StoryBible): number {
   return b.scenes.reduce((n, s) => n + s.lines.reduce((m, l) => m + l.text.split(/\s+/).filter(Boolean).length, 0), 0);
@@ -24,7 +24,7 @@ export function storySeconds(b: StoryBible, wps: number): number {
 }
 
 // Matches engine/timeline.ts: PAGE_LEAD + SCENE_TAIL per page, END_HOLD after the last one.
-const PAGE_OVERHEAD = 2.8;
+const PAGE_OVERHEAD = 2.2;
 const END_HOLD = 3.4;
 
 /** Estimated length of the whole video: speech and pauses, page titles and turns, and THE END. */
@@ -114,13 +114,33 @@ function systemPrompt(maxWords: number, targetWords: number, strict: boolean, to
     `- Aim for about ${targetWords} spoken words in total and NEVER more than ${maxWords}.${strict ? " The previous draft was too long: cut hard." : ""}`,
     "- 3 to 6 scenes, each with 2 to 6 lines. One spoken clause per line: split long sentences at punctuation.",
     "",
+    "A SMALL, SENSIBLE STORY (most important)",
+    "- One simple plot a 4-year-old can follow: one hero, one small wish or problem, two or three steps to solve it,",
+    "  a kind, satisfying resolution, then a cozy goodnight. Nothing random, nothing unexplained, no loose ends.",
+    "- Every line follows from the one before; cause and effect are clear. Names, places and objects stay consistent.",
+    "- Each page is ONE clear beat (meet the hero / the problem / solving it / goodnight). 3 or 4 pages, 3 or 4 lines each.",
+    "- Characters act sensibly for their age and kind, and are kind to each other. Dialogue sounds like real children and",
+    "  grown-ups talking. No jokes that confuse, no scary twists, no moral lecture - show the lesson through what happens.",
+    "- Before answering, re-read the story as a parent would at bedtime: if any line is confusing, silly-in-a-bad-way or",
+    "  does not fit, rewrite it.",
+    "",
     "MATCH THE PREMISE",
     "- Build the story from the family's premise: keep its characters, places, objects and problem, and add specific, vivid details",
     "  (names, colours, sounds, textures). Two different premises must give clearly different stories, settings and characters.",
     "- When the story travels, move between different places, so the pages look different. Set startLights from the premise (day or night).",
     "",
+    "HALLOWEEN NIGHT",
+    "- Tonight is Halloween: weave in friendly Halloween details where they fit the premise (a costume, a glowing jack-o'-lantern,",
+    "  trick-or-treat candy, a shy little bat or a giggly ghost). Always cute and cozy, never frightening.",
+    "",
     `TONE: ${t.label}`,
     `- ${t.story}`,
+    `- PACE for this story: ${t.pace}`,
+    "- PACE MIX: like a lively parent reading aloud. MOST lines at a mid pace (an untagged or bright tag such as [warmly] [playfully]",
+    "  [curious] reads at mid pace). 3-4 HIGH-energy moments with quick tags ([quickly] [excitedly] [breathlessly] [laughs]).",
+    "  At most 3 SLOW moments in the WHOLE story ([slowly] [softly] [whispers] [mysteriously] [sighs] [yawns] count as slow),",
+    "  placed where the story truly needs them. Never two slow tags in one line. At most one ellipsis in the whole story.",
+    "- Keep it moving: short sentences, active verbs, no padding; characters answer each other quickly.",
     "",
     "PERFORMANCE (ElevenLabs v3 reads every line aloud and ACTS OUT audio tags in square brackets)",
     "- For EVERY line also write `performed`: the EXACT same words as `text`, in the same order, acted out with",
@@ -137,13 +157,29 @@ function systemPrompt(maxWords: number, targetWords: number, strict: boolean, to
     "- Plain words, short clauses, tutor-like warmth (\"so\", \"now\", \"let's say\"). No word a young child has not met.",
     "- Gentle only: no violence, no peril beyond a mild bump in the night, and always a comforting, sleepy ending.",
     "",
+    "ALL EXPRESSIONS (the story is short, so make every moment count)",
+    "- Across the story the characters must show EVERY face at least once: neutral, happy, curious, worried, scared (gently),",
+    "  sleepy and proud. Set `expression` on every line to the face its character shows, and let the story earn each one.",
+    "- Across all `performed` lines use the full range of voice expressions at least once each: [laughs] or [giggles], [whispers],",
+    "  [gasps], [sighs], [excited], [curious], [nervously] and [yawns], plus any others that fit the tone.",
+    "",
     "VOICES (each voice is a real ElevenLabs actor)",
-    "- narrator.gender: \"female\" or \"male\", whichever suits this story. Each character gets voice {gender, age} that fits it",
+    "- The narrator is a warm British storyteller (narrator.gender: \"male\"). Each character gets voice {gender, age} that fits it",
     "  (a girl owl -> female child, grandpa bear -> male elder, a mum fox -> female adult).",
+    "- The NARRATOR PERFORMS, never reads flat: in narration lines use storytelling tags that change with the moment",
+    "  ([warmly] [dramatically] [mysteriously] [whispers] [chuckles] [excitedly] [softly] [playfully]), ask the listener",
+    "  little questions, put CAPS on the key word, build up excitement before a surprise and slow right down for the sleepy end.",
     "- speaker on every line: the character id when that character SAYS the words out loud, otherwise \"narrator\".",
     "  Give the characters real dialogue: about half of the lines should be spoken by characters, in their own words.",
     "",
-    "CHARACTERS (max 4)",
+    "CHARACTERS (max 4) - each must be unmistakably its kind of animal. Use these features:",
+    "- bear: ears round, nose snout, tail short | owl: wings, ears pointy (tufts), eyes round, nose beak | bunny: ears long,",
+    "  nose button, whiskers, tail fluffy | cat: ears pointy, nose button, whiskers, tail long | fox: ears pointy, nose snout,",
+    "  whiskers, tail fluffy | mouse: ears round, nose button, whiskers, tail long | dog/puppy: ears round or long, nose snout,",
+    "  tail short | dragon: horns, wings, spikes, tail long, nose snout | penguin/chick/bird: rig blob, wings, nose beak |",
+    "  ghost/slime/bean/star: rig blob, nose none. Other animals: pick the closest mix.",
+    "- Tell characters apart: different palettes and one accessory each (scarf, hat, cape, glasses). Use scale for size:",
+    "  grandparents and big animals 1.2-1.4, children 0.85-1, babies and tiny creatures 0.7-0.8.",
     "- Prefer animals and creatures; they read well as simple line drawings. Each uses rig \"biped\" or \"blob\" plus a skin.",
     "- ids are lowercase snake_case. palette values are ink tokens. Pick features that make each one recognisable.",
     "",
@@ -206,6 +242,37 @@ function cleanPerformances(b: StoryBible): { bible: StoryBible; dropped: number 
   return { bible, dropped };
 }
 
+const SLOW_TAG = /^(slowly|softly|whispers?|whispering|mysteriously|sighs?.*|.*\bsigh|yawns?|sleepily|dreamily|gently)$/i;
+
+/**
+ * Keep the telling mostly mid pace: at most `max` slow tags per story, preferring the final (sleepy)
+ * page and then the earliest one elsewhere. Extra slow tags are dropped; a line left without any tag
+ * gets a mid-pace [warmly] so the composer still uses the acted line.
+ */
+export function limitSlowTags(b: StoryBible, max = 3): { bible: StoryBible; removed: number } {
+  const last = b.scenes.length - 1;
+  const spots: { s: number; l: number; tag: string }[] = [];
+  b.scenes.forEach((sc, s) =>
+    sc.lines.forEach((ln, l) => {
+      for (const m of ln.performed?.matchAll(/\[([^\]]+)\]/g) ?? []) if (SLOW_TAG.test(m[1].trim())) spots.push({ s, l, tag: m[0] });
+    }),
+  );
+  const keep = new Set<(typeof spots)[number]>([
+    ...spots.filter((x) => x.s === last).slice(-2),
+    ...spots.filter((x) => x.s !== last).slice(0, 1),
+  ].slice(0, max));
+  let removed = 0;
+  const bible: StoryBible = JSON.parse(JSON.stringify(b));
+  for (const x of spots) {
+    if (keep.has(x)) continue;
+    const ln = bible.scenes[x.s].lines[x.l];
+    ln.performed = ln.performed!.replace(x.tag, " ").replace(/\s+/g, " ").trim();
+    if (!/\[[^\]]+\]/.test(ln.performed)) ln.performed = `[warmly] ${ln.performed}`;
+    removed++;
+  }
+  return { bible, removed };
+}
+
 export async function directStory(premise: string, tone: Tone = DEFAULT_TONE): Promise<DirectedStory> {
   const e = env();
   const normalized = premise.trim().replace(/\s+/g, " ").toLowerCase();
@@ -245,8 +312,14 @@ export async function directStory(premise: string, tone: Tone = DEFAULT_TONE): P
   const budget = storyCharBudget(e);
   const trimmedStory = trimToBudget({ ...r.value.bible, tone }, e.maxStorySeconds, e.wordsPerSecond, budget);
   const trimmed = trimmedStory.trimmed;
-  const { bible, dropped } = cleanPerformances(trimmedStory.bible);
+  const cleaned = cleanPerformances(trimmedStory.bible);
+  const dropped = cleaned.dropped;
+  // Dreamy stories may stay slower; every other tone keeps to mostly mid pace.
+  const { bible, removed } = tone === "dreamy" ? { bible: cleaned.bible, removed: 0 } : limitSlowTags(cleaned.bible, 3);
+  if (removed) warnings.push(`PACE: removed ${removed} slow tag(s) to keep a mid pace`);
   if (dropped) warnings.push(`${dropped} acted line(s) changed the words; those lines use mood tags instead`);
+  const faces = new Set(bible.scenes.flatMap((sc) => sc.lines.map((l) => l.expression).filter(Boolean)));
+  if (r.value.source === "claude" && faces.size < 7) warnings.push(`EXPRESSIONS: ${faces.size} of 7 faces used`);
   if (trimmed) warnings.push(`TRIMMED ${trimmed} line(s) to fit a ${e.maxStorySeconds} s video${budget ? ` and ${budget} voice characters` : ""}`);
   return { bible, source: r.hit ? "cache" : r.value.source, tokens: r.hit ? 0 : r.value.tokens, warnings };
 }

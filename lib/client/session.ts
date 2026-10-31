@@ -6,6 +6,8 @@ import { DEFAULT_TONE, TONE_IDS } from "@/lib/tones";
 export const MAX_STORY_SECONDS = Number(process.env.NEXT_PUBLIC_MAX_STORY_SECONDS ?? 120) || 120;
 export const MAX_STORIES = Number(process.env.NEXT_PUBLIC_MAX_STORIES_PER_SESSION ?? 5) || 5;
 export const MAX_GENERATION_SECONDS = Number(process.env.NEXT_PUBLIC_MAX_GENERATION_SECONDS ?? 45) || 45;
+/** Voice playback speed (pitch preserved): a mid storytelling pace. */
+export const VOICE_RATE = Math.min(1.4, Math.max(0.8, Number(process.env.NEXT_PUBLIC_VOICE_RATE ?? 1.15) || 1.15));
 export const INK_MODE = (process.env.NEXT_PUBLIC_INK_MODE === "chalk" ? "chalk" : "mono") as "mono" | "chalk";
 
 const COUNT = "fablecast:count";
