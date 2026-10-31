@@ -1,4 +1,5 @@
 "use client";
+import { VOICE_RATE } from "@/lib/client/session";
 // The single clock (readme 12.5). Inside a scene with a voice take, the clock IS that scene's <audio>
 // element: t = audioStart + audio.currentTime, so the sketches never run ahead of (or behind) the voice.
 // If the take is not ready yet, or is buffering, t holds until it can play. Between takes (page leads,
@@ -102,6 +103,11 @@ export function usePlayback(tl: Timeline | null, baseTheme: ThemeMode, muted: bo
       a.src = s.audioSrc;
       a.muted = mutedRef.current;
       a.load();
+      // A touch faster than the take, pitch kept natural. Captions and sketches follow the audio's own
+      // clock (currentTime is media time), so they stay in sync at any rate.
+      a.defaultPlaybackRate = VOICE_RATE;
+      a.playbackRate = VOICE_RATE;
+      a.preservesPitch = true;
       audios.current.set(s.index, a);
     }
   }, [tl]);

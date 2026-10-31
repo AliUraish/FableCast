@@ -75,7 +75,85 @@ interface Preset {
 // Circles in a non-square box: divide the x radius by the aspect so they stay round.
 const circ = (cx: number, cy: number, r: number, a: number, n = 36) => oval(cx, cy, r / a, r, n);
 
+// Halloween night (Oct 31): friendly, never scary.
+function web(): Part[] {
+  const spokes: Part[] = [];
+  const rings: Part[] = [];
+  const n = 8;
+  const at = (k: number, r: number): Pt => [50 + Math.cos((k / n) * Math.PI * 2) * r, 50 + Math.sin((k / n) * Math.PI * 2) * r];
+  for (let k = 0; k < n; k++) spokes.push({ name: `spoke${k}`, pts: line([50, 50], at(k, 48), 5), width: 0.6 });
+  for (const r of [14, 28, 42]) {
+    const pts: Pt[] = [];
+    for (let k = 0; k <= n; k++) {
+      const a = at(k % n, r);
+      const b = at((k + 1) % n, r);
+      const mid: Pt = [50 + ((a[0] + b[0]) / 2 - 50) * 0.86, 50 + ((a[1] + b[1]) / 2 - 50) * 0.86]; // sags inward
+      if (k < n) pts.push(...curve(a, mid, b, 6).slice(k ? 1 : 0));
+    }
+    rings.push({ name: `ring${r}`, pts, width: 0.55 });
+  }
+  return [...spokes, ...rings, { name: "spider", pts: oval(64, 62, 3.5, 4.5, 14), fill: "red" }];
+}
+
+const HALLOWEEN = {
+  pumpkin: {
+    aspect: 1.2, grounded: true,
+    parts: () => [
+      { name: "stem", pts: poly([47, 30], [45, 14], [55, 11], [53, 30]) },
+      { name: "body", pts: bumpy(50, 63, 46, 35, 6, 0.05), occlude: true },
+      { name: "ribL", pts: curve([50, 29], [34, 62], [50, 97], 14), width: 0.55 },
+      { name: "ribR", pts: curve([50, 29], [66, 62], [50, 97], 14), width: 0.55 },
+      { name: "eyeL", pts: closed([26, 54], [40, 54], [33, 41]), fill: "red" },
+      { name: "eyeR", pts: closed([60, 54], [74, 54], [67, 41]), fill: "red" },
+      { name: "mouth", pts: closed([24, 68], [32, 74], [41, 68], [50, 76], [59, 68], [68, 74], [76, 68], [67, 84], [33, 84]), fill: "red" },
+    ],
+  },
+  bat: {
+    aspect: 2, grounded: false,
+    parts: () => [
+      { name: "wingL", pts: join(curve([45, 46], [26, 22], [4, 30], 12), poly([4, 30], [11, 44], [18, 40], [25, 53], [33, 47], [45, 58])), occlude: true, fill: "red" },
+      { name: "wingR", pts: join(curve([55, 46], [74, 22], [96, 30], 12), poly([96, 30], [89, 44], [82, 40], [75, 53], [67, 47], [55, 58])), occlude: true, fill: "red" },
+      { name: "body", pts: oval(50, 52, 7, 13, 24), occlude: true, fill: "red" },
+      { name: "ears", pts: poly([45, 42], [44, 30], [48, 38], [52, 38], [56, 30], [55, 42]) },
+    ],
+  },
+  web: { aspect: 1, grounded: false, parts: web },
+  candy: {
+    aspect: 1.9, grounded: true,
+    parts: () => [
+      { name: "twistL", pts: closed([33, 50], [6, 30], [12, 50], [6, 70]), occlude: true },
+      { name: "twistR", pts: closed([67, 50], [94, 30], [88, 50], [94, 70]), occlude: true },
+      { name: "sweet", pts: oval(50, 50, 19, 18, 30), occlude: true, fill: "pink" },
+      { name: "stripe", pts: curve([42, 34], [52, 50], [44, 66], 8), width: 0.7 },
+    ],
+  },
+  ghost: {
+    aspect: 0.8, grounded: false,
+    parts: () => [
+      {
+        name: "sheet",
+        pts: join(curve([12, 92], [8, 6], [50, 6], 18), curve([50, 6], [92, 6], [88, 92], 18),
+          poly([88, 92], [78, 83], [68, 94], [58, 83], [48, 94], [38, 83], [28, 94], [18, 83], [12, 92])),
+        occlude: true,
+      },
+      { name: "eyeL", pts: oval(37, 40, 5, 7, 16), fill: "red" },
+      { name: "eyeR", pts: oval(63, 40, 5, 7, 16), fill: "red" },
+      { name: "boo", pts: oval(50, 60, 6, 8, 18), width: 0.8 },
+    ],
+  },
+  witch_hat: {
+    aspect: 1.3, grounded: true,
+    parts: () => [
+      { name: "cone", pts: poly([24, 86], [40, 46], [54, 8], [70, 18], [62, 26], [76, 86]), occlude: true, fill: "purple" },
+      { name: "brim", pts: oval(50, 88, 48, 9, 36), occlude: true },
+      { name: "band", pts: closed([28, 70], [72, 70], [75, 82], [25, 82]), occlude: true, fill: "red" },
+      { name: "buckle", pts: closed([44, 69], [56, 69], [56, 83], [44, 83]), occlude: true },
+    ],
+  },
+} satisfies Partial<Record<PropPreset, Preset>>;
+
 const PRESETS: Record<PropPreset, Preset> = {
+  ...HALLOWEEN,
   moon: {
     aspect: 1, grounded: false,
     parts: () => {

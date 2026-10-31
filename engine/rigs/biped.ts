@@ -378,6 +378,7 @@ function drawEye(ctx: Ctx, kind: EyeShape, x: number, y: number, u: number, lk: 
 export function drawFace(
   ctx: Ctx, f: FaceState, cx: number, cy: number, u: number, p: number,
   o: CharDrawOpts, lw: number, glasses: boolean, accent: ColorName,
+  species: { nose?: "none" | "button" | "snout" | "beak"; whiskers?: boolean } = {},
 ): void {
   if (p <= 0) return;
   const fo: StrokeOpts = { ink: o.ink, width: lw * 0.9 };
@@ -403,7 +404,19 @@ export function drawFace(
   }
   brows.forEach((b) => stroke(ctx, b, pb, fo));
 
-  const mx = cx + 2 * u, my = cy + 10 * u;
+  // Muzzle first, so the mouth and nose draw on top of it.
+  const nose = species.nose ?? "none";
+  const pn = seg(p, 0.55, 0.75);
+  if (nose === "snout") stroke(ctx, oval(cx + 1.5 * u, cy + 9 * u, 9.5 * u, 6.5 * u, 30), pn, { ...fo, occlude: true });
+  if (species.whiskers) {
+    const wo: StrokeOpts = { ...fo, width: lw * 0.55 };
+    stroke(ctx, line([cx - 5 * u, cy + 6 * u], [cx - 19 * u, cy + 3 * u], 4), pn, wo);
+    stroke(ctx, line([cx - 5 * u, cy + 8.5 * u], [cx - 19 * u, cy + 9.5 * u], 4), pn, wo);
+    stroke(ctx, line([cx + 8 * u, cy + 6 * u], [cx + 22 * u, cy + 3 * u], 4), pn, wo);
+    stroke(ctx, line([cx + 8 * u, cy + 8.5 * u], [cx + 22 * u, cy + 9.5 * u], 4), pn, wo);
+  }
+
+  const mx = cx + 2 * u, my = cy + (nose === "snout" ? 12 : 10) * u;
   let mouth: Pt[] = [];
   let fill = false;
   switch (f.mouth) {
@@ -420,7 +433,17 @@ export function drawFace(
     case "open": mouth = oval(mx, my + 1 * u, 3.6 * u, 5 * u, 22); fill = true; break;
     case "wavy": mouth = [[mx - 6 * u, my], [mx - 3 * u, my - 1.5 * u], [mx, my], [mx + 3 * u, my - 1.5 * u], [mx + 6 * u, my]]; break;
   }
-  stroke(ctx, mouth, pm, { ...fo, occlude: fill });
+  if (nose === "beak") {
+    // A beak replaces the mouth; it opens for big, open and "o" mouths.
+    const open = f.mouth === "big" || f.mouth === "open" || f.mouth === "o";
+    stroke(ctx, poly([[cx - 3.5 * u, cy + 5 * u], [cx + 7.5 * u, cy + 5 * u], [cx + 2 * u, cy + (open ? 9 : 13) * u]]), pm, { ...fo, occlude: true, fill: "red" });
+    if (open) stroke(ctx, poly([[cx - 2 * u, cy + 11 * u], [cx + 6 * u, cy + 11 * u], [cx + 2 * u, cy + 15 * u]]), pm, { ...fo, occlude: true });
+  } else {
+    stroke(ctx, mouth, pm, { ...fo, occlude: fill });
+  }
+  if (nose === "button" || nose === "snout") {
+    stroke(ctx, oval(cx + 1.5 * u, cy + (nose === "snout" ? 6.5 : 5) * u, 2.6 * u, 1.9 * u, 14), pn, { ...fo, occlude: true, fill: "red" });
+  }
 
   if (glasses && pg > 0) {
     const go: StrokeOpts = { ink: o.ink, color: accent, width: lw * 0.8 };
@@ -482,7 +505,7 @@ export function drawBiped(ctx: Ctx, skin: CharacterSkin, pose: CharPose, o: Char
   if (F.ears !== "none") drawEars(ctx, F.ears, head, u, xp("ears"), so("ears", { occlude: true, fill: pal.accent }));
   if (F.horns) drawHorns(ctx, head, u, xp("horns"), so("horns", { occlude: true, fill: pal.accent }));
   stroke(ctx, oval(head.cx, head.cy, head.rx, head.ry, 52), w("head"), so("head", { occlude: true }));
-  drawFace(ctx, m.face, head.cx + 3 * u, head.cy + 1 * u, u, w("face"), o, lw, F.accessory === "glasses", pal.accent);
+  drawFace(ctx, m.face, head.cx + 3 * u, head.cy + 1 * u, u, w("face"), o, lw, F.accessory === "glasses", pal.accent, { nose: F.nose, whiskers: F.whiskers });
   if (F.accessory === "hat") drawHat(ctx, head, u, xp("hat"), so("hat", { occlude: true, fill: pal.accent }));
   if (m.zzz > 0) drawZzz(ctx, head.cx + 18 * u, head.cy - 22 * u, u, m.zzz, o, lw);
   ctx.restore();

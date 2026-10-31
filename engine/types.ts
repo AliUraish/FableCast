@@ -61,6 +61,7 @@ export interface TLLine {
   index: number; // line index within scene
   global: number; // index across the story
   character: string; // character id or "narrator"
+  speaker: string; // who SAYS the words: character id or "narrator" (captions show their name)
   text: string; // display text (tags stripped)
   performed: string;
   start: number;
