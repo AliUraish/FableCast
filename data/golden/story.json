@@ -1,0 +1,2132 @@
+{
+ "storyId": "golden-01dab52506",
+ "bible": {
+  "title": "Ember and the Dark",
+  "worldNote": "A grassy hill, a quiet forest and a cozy cave; gentle, warm, bedtime.",
+  "startLights": "day",
+  "characters": [
+   {
+    "id": "ember",
+    "name": "Ember",
+    "rig": "biped",
+    "palette": {
+     "body": "white",
+     "accent": "orange",
+     "outline": "white"
+    },
+    "features": {
+     "ears": "none",
+     "tail": "long",
+     "horns": true,
+     "wings": true,
+     "spikes": true,
+     "eyes": "round",
+     "accessory": "none"
+    },
+    "scale": 1
+   },
+   {
+    "id": "glim",
+    "name": "Glim",
+    "rig": "blob",
+    "palette": {
+     "body": "yellow",
+     "accent": "orange",
+     "outline": "white"
+    },
+    "features": {
+     "ears": "none",
+     "tail": "none",
+     "horns": false,
+     "wings": true,
+     "spikes": false,
+     "eyes": "round",
+     "accessory": "none"
+    },
+    "scale": 0.7
+   }
+  ],
+  "agents": [
+   {
+    "id": "hush",
+    "name": "Hush",
+    "mood": "calm, warm, near-whisper",
+    "routingHints": [
+     "Calm scene-setting narration",
+     "Gentle, slow, cozy moments",
+     "The comforting ending"
+    ],
+    "voiceTraits": {
+     "age": "adult",
+     "gender": "male",
+     "quality": "warm storyteller"
+    },
+    "tagPalette": [
+     [
+      "softly"
+     ],
+     [
+      "warmly"
+     ],
+     [
+      "tenderly",
+      "slowly"
+     ]
+    ],
+    "voiceSettings": {
+     "stability": 0.5,
+     "style": 0.3
+    },
+    "ink": "white",
+    "wobble": 0.2
+   },
+   {
+    "id": "wonder",
+    "name": "Wonder",
+    "mood": "curious, bright, delighted",
+    "routingHints": [
+     "Questions and discoveries",
+     "Excitement about something new",
+     "Delight and joy"
+    ],
+    "voiceTraits": {
+     "age": "child",
+     "gender": "female",
+     "quality": "bright, playful"
+    },
+    "tagPalette": [
+     [
+      "curious"
+     ],
+     [
+      "excited"
+     ],
+     [
+      "delighted",
+      "laughs"
+     ]
+    ],
+    "voiceSettings": {
+     "stability": 0.5,
+     "style": 0.6
+    },
+    "ink": "yellow",
+    "wobble": 0.4
+   },
+   {
+    "id": "shiver",
+    "name": "Shiver",
+    "mood": "nervous, trembling, small",
+    "routingHints": [
+     "Fear of the dark",
+     "Nervous questions",
+     "Hiding and trembling"
+    ],
+    "voiceTraits": {
+     "age": "child",
+     "gender": "male",
+     "quality": "small, shaky"
+    },
+    "tagPalette": [
+     [
+      "nervous"
+     ],
+     [
+      "whispers",
+      "nervous"
+     ],
+     [
+      "scared",
+      "trembling"
+     ]
+    ],
+    "voiceSettings": {
+     "stability": 0,
+     "style": 0.7
+    },
+    "ink": "blue",
+    "wobble": 1.2
+   },
+   {
+    "id": "glow",
+    "name": "Glow",
+    "mood": "kind, reassuring, glowing",
+    "routingHints": [
+     "A friend offering help",
+     "Relief and bravery",
+     "Warm reassurance"
+    ],
+    "voiceTraits": {
+     "age": "adult",
+     "gender": "female",
+     "quality": "kind, gentle"
+    },
+    "tagPalette": [
+     [
+      "kindly"
+     ],
+     [
+      "reassuring"
+     ],
+     [
+      "joyful",
+      "warmly"
+     ]
+    ],
+    "voiceSettings": {
+     "stability": 0.5,
+     "style": 0.5
+    },
+    "ink": "orange",
+    "wobble": 0.3
+   }
+  ],
+  "scenes": [
+   {
+    "id": 0,
+    "summary": "Ember the little dragon plays on a sunny hill, but worries about the night.",
+    "mood": "warm, then a little worried",
+    "lines": [
+     {
+      "character": "narrator",
+      "text": "On a quiet hill, there lived a little dragon called Ember.",
+      "focus": "ember",
+      "keyword": "Ember"
+     },
+     {
+      "character": "ember",
+      "text": "Ember loved the sun, the warm grass, and the big blue sky."
+     },
+     {
+      "character": "narrator",
+      "text": "But every night, when the sun went down, Ember felt afraid.",
+      "focus": "sun",
+      "keyword": "down"
+     },
+     {
+      "character": "ember",
+      "text": "What if the dark is full of scary things?"
+     }
+    ]
+   },
+   {
+    "id": 1,
+    "summary": "Night falls in the forest. Ember hides, hears a rustle, and meets Glim the firefly.",
+    "mood": "scary, then surprised",
+    "lines": [
+     {
+      "character": "narrator",
+      "text": "Then the lights went out, and the forest turned dark."
+     },
+     {
+      "character": "ember",
+      "text": "Who is there? I can hear something rustling!",
+      "focus": "bush",
+      "keyword": "rustling"
+     },
+     {
+      "character": "narrator",
+      "text": "A tiny light blinked on, then off, then on again."
+     },
+     {
+      "character": "glim",
+      "text": "Hello! I am Glim the firefly, and I glow!",
+      "focus": "glim",
+      "keyword": "glow"
+     }
+    ]
+   },
+   {
+    "id": 2,
+    "summary": "Glim shows Ember the stars in the meadow.",
+    "mood": "curious, delighted",
+    "lines": [
+     {
+      "character": "narrator",
+      "text": "Glim floated close, and the dark did not feel so big."
+     },
+     {
+      "character": "glim",
+      "text": "Look up, Ember. The dark is where the stars come out to play."
+     },
+     {
+      "character": "ember",
+      "text": "Oh! They are sparkling, just like you!",
+      "focus": "star_a",
+      "keyword": "sparkling"
+     },
+     {
+      "character": "narrator",
+      "text": "One by one, Ember counted the stars, and smiled."
+     }
+    ]
+   },
+   {
+    "id": 3,
+    "summary": "Back in the cozy cave, Ember falls asleep while Glim glows nearby.",
+    "mood": "sleepy, safe, warm",
+    "lines": [
+     {
+      "character": "narrator",
+      "text": "Back home in the cozy cave, Ember curled up in bed."
+     },
+     {
+      "character": "glim",
+      "text": "Goodnight, Ember. I will glow right here, by your side."
+     },
+     {
+      "character": "ember",
+      "text": "Goodnight, Glim. The dark is not so scary now."
+     },
+     {
+      "character": "narrator",
+      "text": "And the little dragon fell fast asleep, under a sky full of friends.",
+      "focus": "ember",
+      "keyword": "asleep"
+     }
+    ]
+   }
+  ]
+ },
+ "casting": {
+  "narrator_default": {
+   "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+   "name": "George",
+   "slot": "narrator"
+  },
+  "hush": {
+   "voiceId": "JBFqnCBsd6RMkjVDRZzb",
+   "name": "George",
+   "slot": "narrator"
+  },
+  "wonder": {
+   "voiceId": "cgSgspJ2msm6clMCkdW9",
+   "name": "Jessica",
+   "slot": "child_f"
+  },
+  "shiver": {
+   "voiceId": "TX3LPaxmHKxFdv7VOQHJ",
+   "name": "Liam",
+   "slot": "child_m"
+  },
+  "glow": {
+   "voiceId": "EXAVITQu4vr4xnSDxMaL",
+   "name": "Sarah",
+   "slot": "adult_f"
+  }
+ },
+ "scenes": [
+  {
+   "sceneId": 0,
+   "index": 0,
+   "staging": {
+    "sceneId": 0,
+    "backdrop": "hilltop",
+    "props": [
+     {
+      "id": "sun",
+      "preset": "sun",
+      "at": [
+       0.8,
+       0.14
+      ],
+      "size": 0.2,
+      "tappable": true,
+      "reaction": "glow"
+     },
+     {
+      "id": "cloud_a",
+      "preset": "cloud",
+      "at": [
+       0.25,
+       0.12
+      ],
+      "size": 0.12,
+      "tappable": true,
+      "reaction": "wiggle"
+     },
+     {
+      "id": "flower_a",
+      "preset": "flower",
+      "at": [
+       0.72,
+       0.86
+      ],
+      "size": 0.12,
+      "tappable": true,
+      "reaction": "pop"
+     }
+    ],
+    "actions": [
+     {
+      "line": 0,
+      "at": 0,
+      "span": 1,
+      "action": {
+       "type": "enter",
+       "who": "ember",
+       "from": "left",
+       "to": [
+        0.42,
+        0.8
+       ]
+      }
+     },
+     {
+      "line": 1,
+      "at": 0.1,
+      "span": 0.7,
+      "action": {
+       "type": "gesture",
+       "who": "ember",
+       "kind": "jump"
+      }
+     },
+     {
+      "line": 1,
+      "at": 0.6,
+      "span": 0.4,
+      "action": {
+       "type": "look_at",
+       "who": "ember",
+       "target": "sun"
+      }
+     },
+     {
+      "line": 2,
+      "at": 0.3,
+      "span": 0.7,
+      "action": {
+       "type": "prop",
+       "id": "sun",
+       "do": "move",
+       "to": [
+        0.86,
+        0.62
+       ]
+      }
+     },
+     {
+      "line": 2,
+      "at": 0.6,
+      "span": 0.4,
+      "action": {
+       "type": "gesture",
+       "who": "ember",
+       "kind": "shiver"
+      }
+     },
+     {
+      "line": 3,
+      "at": 0,
+      "span": 0.6,
+      "action": {
+       "type": "camera",
+       "focus": [
+        0.42,
+        0.62
+       ],
+       "zoom": 1.3
+      }
+     },
+     {
+      "line": 3,
+      "at": 0.3,
+      "span": 0.7,
+      "action": {
+       "type": "gesture",
+       "who": "ember",
+       "kind": "hide"
+      }
+     }
+    ]
+   },
+   "stagingSource": "cache",
+   "decisions": [
+    {
+     "agentId": "hush",
+     "intensity": 0,
+     "pause": "short",
+     "expression": "happy",
+     "emphasis": true,
+     "probabilities": {
+      "hush": 0.82,
+      "wonder": 0.06,
+      "shiver": 0.06,
+      "glow": 0.06
+     },
+     "latencyMs": 14,
+     "cacheHit": true,
+     "source": "jev"
+    },
+    {
+     "agentId": "wonder",
+     "intensity": 1,
+     "pause": "short",
+     "expression": "happy",
+     "emphasis": false,
+     "probabilities": {
+      "hush": 0.06,
+      "wonder": 0.82,
+      "shiver": 0.06,
+      "glow": 0.06
+     },
+     "latencyMs": 12,
+     "cacheHit": true,
+     "source": "jev"
+    },
+    {
+     "agentId": "hush",
+     "intensity": 1,
+     "pause": "short",
+     "expression": "worried",
+     "emphasis": true,
+     "probabilities": {
+      "hush": 0.82,
+      "wonder": 0.06,
+      "shiver": 0.06,
+      "glow": 0.06
+     },
+     "latencyMs": 15,
+     "cacheHit": true,
+     "source": "jev"
+    },
+    {
+     "agentId": "shiver",
+     "intensity": 1,
+     "pause": "long",
+     "expression": "worried",
+     "emphasis": false,
+     "probabilities": {
+      "hush": 0.06,
+      "wonder": 0.06,
+      "shiver": 0.82,
+      "glow": 0.06
+     },
+     "latencyMs": 13,
+     "cacheHit": true,
+     "source": "jev"
+    }
+   ],
+   "performed": [
+    "[softly] On a quiet hill, there lived a little dragon called Ember.",
+    "[excited] Ember loved the sun, the warm grass, and the big blue sky.",
+    "[warmly] But every night, when the sun went down, Ember felt afraid.",
+    "[whispers] What if the dark is full of scary things?"
+   ],
+   "audio": {
+    "provider": "draft",
+    "src": null,
+    "duration": 18.85,
+    "lines": [
+     {
+      "start": 0,
+      "end": 4.4,
+      "words": [
+       {
+        "text": "On",
+        "start": 0,
+        "end": 0.206
+       },
+       {
+        "text": "a",
+        "start": 0.224,
+        "end": 0.361
+       },
+       {
+        "text": "quiet",
+        "start": 0.373,
+        "end": 0.785
+       },
+       {
+        "text": "hill,",
+        "start": 0.82,
+        "end": 1.232
+       },
+       {
+        "text": "there",
+        "start": 1.268,
+        "end": 1.679
+       },
+       {
+        "text": "lived",
+        "start": 1.715,
+        "end": 2.127
+       },
+       {
+        "text": "a",
+        "start": 2.163,
+        "end": 2.3
+       },
+       {
+        "text": "little",
+        "start": 2.312,
+        "end": 2.792
+       },
+       {
+        "text": "dragon",
+        "start": 2.834,
+        "end": 3.314
+       },
+       {
+        "text": "called",
+        "start": 3.356,
+        "end": 3.836
+       },
+       {
+        "text": "Ember.",
+        "start": 3.878,
+        "end": 4.358
+       }
+      ]
+     },
+     {
+      "start": 4.85,
+      "end": 9.65,
+      "words": [
+       {
+        "text": "Ember",
+        "start": 4.85,
+        "end": 5.299
+       },
+       {
+        "text": "loved",
+        "start": 5.338,
+        "end": 5.787
+       },
+       {
+        "text": "the",
+        "start": 5.826,
+        "end": 6.126
+       },
+       {
+        "text": "sun,",
+        "start": 6.152,
+        "end": 6.526
+       },
+       {
+        "text": "the",
+        "start": 6.558,
+        "end": 6.858
+       },
+       {
+        "text": "warm",
+        "start": 6.884,
+        "end": 7.258
+       },
+       {
+        "text": "grass,",
+        "start": 7.291,
+        "end": 7.815
+       },
+       {
+        "text": "and",
+        "start": 7.86,
+        "end": 8.16
+       },
+       {
+        "text": "the",
+        "start": 8.186,
+        "end": 8.485
+       },
+       {
+        "text": "big",
+        "start": 8.511,
+        "end": 8.81
+       },
+       {
+        "text": "blue",
+        "start": 8.836,
+        "end": 9.211
+       },
+       {
+        "text": "sky.",
+        "start": 9.243,
+        "end": 9.617
+       }
+      ]
+     },
+     {
+      "start": 10.1,
+      "end": 14.5,
+      "words": [
+       {
+        "text": "But",
+        "start": 10.1,
+        "end": 10.37
+       },
+       {
+        "text": "every",
+        "start": 10.393,
+        "end": 10.798
+       },
+       {
+        "text": "night,",
+        "start": 10.833,
+        "end": 11.306
+       },
+       {
+        "text": "when",
+        "start": 11.347,
+        "end": 11.684
+       },
+       {
+        "text": "the",
+        "start": 11.713,
+        "end": 11.983
+       },
+       {
+        "text": "sun",
+        "start": 12.007,
+        "end": 12.277
+       },
+       {
+        "text": "went",
+        "start": 12.3,
+        "end": 12.637
+       },
+       {
+        "text": "down,",
+        "start": 12.667,
+        "end": 13.071
+       },
+       {
+        "text": "Ember",
+        "start": 13.107,
+        "end": 13.511
+       },
+       {
+        "text": "felt",
+        "start": 13.547,
+        "end": 13.884
+       },
+       {
+        "text": "afraid.",
+        "start": 13.913,
+        "end": 14.453
+       }
+      ]
+     },
+     {
+      "start": 14.95,
+      "end": 18.55,
+      "words": [
+       {
+        "text": "What",
+        "start": 14.95,
+        "end": 15.344
+       },
+       {
+        "text": "if",
+        "start": 15.379,
+        "end": 15.615
+       },
+       {
+        "text": "the",
+        "start": 15.636,
+        "end": 15.951
+       },
+       {
+        "text": "dark",
+        "start": 15.979,
+        "end": 16.373
+       },
+       {
+        "text": "is",
+        "start": 16.407,
+        "end": 16.644
+       },
+       {
+        "text": "full",
+        "start": 16.664,
+        "end": 17.059
+       },
+       {
+        "text": "of",
+        "start": 17.093,
+        "end": 17.329
+       },
+       {
+        "text": "scary",
+        "start": 17.35,
+        "end": 17.823
+       },
+       {
+        "text": "things?",
+        "start": 17.864,
+        "end": 18.495
+       }
+      ]
+     }
+    ]
+   },
+   "metrics": {
+    "jevCalls": 4,
+    "jevMsTotal": 54,
+    "elevenChars": 0,
+    "claudeTokens": 0,
+    "cacheHits": 5,
+    "resolvedJevModel": "jev-1.14.0",
+    "ms": 0
+   },
+   "warnings": []
+  },
+  {
+   "sceneId": 1,
+   "index": 1,
+   "staging": {
+    "sceneId": 1,
+    "backdrop": "night_forest",
+    "props": [
+     {
+      "id": "rock",
+      "preset": "rock",
+      "at": [
+       0.72,
+       0.84
+      ],
+      "size": 0.16,
+      "tappable": true,
+      "reaction": "wiggle"
+     },
+     {
+      "id": "bush",
+      "preset": "bush",
+      "at": [
+       0.18,
+       0.84
+      ],
+      "size": 0.18,
+      "tappable": true,
+      "reaction": "wiggle"
+     },
+     {
+      "id": "spark",
+      "preset": "star",
+      "at": [
+       0.3,
+       0.4
+      ],
+      "size": 0.08,
+      "tappable": true,
+      "reaction": "glow"
+     }
+    ],
+    "actions": [
+     {
+      "line": 0,
+      "at": 0.15,
+      "span": 0.4,
+      "action": {
+       "type": "lights",
+       "mode": "night"
+      }
+     },
+     {
+      "line": 0,
+      "at": 0.2,
+      "span": 1,
+      "action": {
+       "type": "enter",
+       "who": "ember",
+       "from": "right",
+       "to": [
+        0.6,
+        0.8
+       ]
+      }
+     },
+     {
+      "line": 1,
+      "at": 0,
+      "span": 0.6,
+      "action": {
+       "type": "gesture",
+       "who": "ember",
+       "kind": "shiver"
+      }
+     },
+     {
+      "line": 1,
+      "at": 0.2,
+      "span": 0.3,
+      "action": {
+       "type": "look_at",
+       "who": "ember",
+       "target": "bush"
+      }
+     },
+     {
+      "line": 1,
+      "at": 0.5,
+      "span": 0.5,
+      "action": {
+       "type": "prop",
+       "id": "bush",
+       "do": "move",
+       "to": [
+        0.2,
+        0.84
+       ]
+      }
+     },
+     {
+      "line": 2,
+      "at": 0,
+      "span": 0.5,
+      "action": {
+       "type": "prop",
+       "id": "spark",
+       "do": "appear"
+      }
+     },
+     {
+      "line": 2,
+      "at": 0.5,
+      "span": 0.5,
+      "action": {
+       "type": "prop",
+       "id": "spark",
+       "do": "disappear"
+      }
+     },
+     {
+      "line": 3,
+      "at": 0,
+      "span": 0.8,
+      "action": {
+       "type": "enter",
+       "who": "glim",
+       "from": "left",
+       "to": [
+        0.34,
+        0.8
+       ]
+      }
+     },
+     {
+      "line": 3,
+      "at": 0.6,
+      "span": 0.4,
+      "action": {
+       "type": "gesture",
+       "who": "glim",
+       "kind": "wave"
+      }
+     }
+    ]
+   },
+   "stagingSource": "cache",
+   "decisions": [
+    {
+     "agentId": "hush",
+     "intensity": 1,
+     "pause": "long",
+     "expression": "scared",
+     "emphasis": false,
+     "probabilities": {
+      "hush": 0.82,
+      "wonder": 0.06,
+      "shiver": 0.06,
+      "glow": 0.06
+     },
+     "latencyMs": 16,
+     "cacheHit": true,
+     "source": "jev"
+    },
+    {
+     "agentId": "shiver",
+     "intensity": 2,
+     "pause": "short",
+     "expression": "scared",
+     "emphasis": true,
+     "probabilities": {
+      "hush": 0.06,
+      "wonder": 0.06,
+      "shiver": 0.82,
+      "glow": 0.06
+     },
+     "latencyMs": 12,
+     "cacheHit": true,
+     "source": "jev"
+    },
+    {
+     "agentId": "hush",
+     "intensity": 1,
+     "pause": "short",
+     "expression": "curious",
+     "emphasis": false,
+     "probabilities": {
+      "hush": 0.82,
+      "wonder": 0.06,
+      "shiver": 0.06,
+      "glow": 0.06
+     },
+     "latencyMs": 14,
+     "cacheHit": true,
+     "source": "jev"
+    },
+    {
+     "agentId": "glow",
+     "intensity": 1,
+     "pause": "long",
+     "expression": "happy",
+     "emphasis": true,
+     "probabilities": {
+      "hush": 0.06,
+      "wonder": 0.06,
+      "shiver": 0.06,
+      "glow": 0.82
+     },
+     "latencyMs": 13,
+     "cacheHit": true,
+     "source": "jev"
+    }
+   ],
+   "performed": [
+    "[warmly] Then the lights went out, and the forest turned dark.",
+    "[scared] Who is there? I can hear something rustling!",
+    "[warmly] A tiny light blinked on, then off, then on again.",
+    "[reassuring] Hello! I am Glim the firefly, and I glow!"
+   ],
+   "audio": {
+    "provider": "draft",
+    "src": null,
+    "duration": 16.900000000000002,
+    "lines": [
+     {
+      "start": 0,
+      "end": 4,
+      "words": [
+       {
+        "text": "Then",
+        "start": 0,
+        "end": 0.341
+       },
+       {
+        "text": "the",
+        "start": 0.37,
+        "end": 0.643
+       },
+       {
+        "text": "lights",
+        "start": 0.667,
+        "end": 1.144
+       },
+       {
+        "text": "went",
+        "start": 1.185,
+        "end": 1.526
+       },
+       {
+        "text": "out,",
+        "start": 1.556,
+        "end": 1.896
+       },
+       {
+        "text": "and",
+        "start": 1.926,
+        "end": 2.199
+       },
+       {
+        "text": "the",
+        "start": 2.222,
+        "end": 2.495
+       },
+       {
+        "text": "forest",
+        "start": 2.519,
+        "end": 2.996
+       },
+       {
+        "text": "turned",
+        "start": 3.037,
+        "end": 3.514
+       },
+       {
+        "text": "dark.",
+        "start": 3.556,
+        "end": 3.964
+       }
+      ]
+     },
+     {
+      "start": 4.9,
+      "end": 8.1,
+      "words": [
+       {
+        "text": "Who",
+        "start": 4.9,
+        "end": 5.162
+       },
+       {
+        "text": "is",
+        "start": 5.184,
+        "end": 5.381
+       },
+       {
+        "text": "there?",
+        "start": 5.398,
+        "end": 5.856
+       },
+       {
+        "text": "I",
+        "start": 5.896,
+        "end": 6.026
+       },
+       {
+        "text": "can",
+        "start": 6.038,
+        "end": 6.299
+       },
+       {
+        "text": "hear",
+        "start": 6.322,
+        "end": 6.649
+       },
+       {
+        "text": "something",
+        "start": 6.678,
+        "end": 7.332
+       },
+       {
+        "text": "rustling!",
+        "start": 7.389,
+        "end": 8.043
+       }
+      ]
+     },
+     {
+      "start": 8.55,
+      "end": 12.55,
+      "words": [
+       {
+        "text": "A",
+        "start": 8.55,
+        "end": 8.697
+       },
+       {
+        "text": "tiny",
+        "start": 8.71,
+        "end": 9.078
+       },
+       {
+        "text": "light",
+        "start": 9.11,
+        "end": 9.552
+       },
+       {
+        "text": "blinked",
+        "start": 9.59,
+        "end": 10.179
+       },
+       {
+        "text": "on,",
+        "start": 10.23,
+        "end": 10.524
+       },
+       {
+        "text": "then",
+        "start": 10.55,
+        "end": 10.918
+       },
+       {
+        "text": "off,",
+        "start": 10.95,
+        "end": 11.318
+       },
+       {
+        "text": "then",
+        "start": 11.35,
+        "end": 11.718
+       },
+       {
+        "text": "on",
+        "start": 11.75,
+        "end": 11.971
+       },
+       {
+        "text": "again.",
+        "start": 11.99,
+        "end": 12.505
+       }
+      ]
+     },
+     {
+      "start": 13,
+      "end": 16.6,
+      "words": [
+       {
+        "text": "Hello!",
+        "start": 13,
+        "end": 13.552
+       },
+       {
+        "text": "I",
+        "start": 13.6,
+        "end": 13.758
+       },
+       {
+        "text": "am",
+        "start": 13.771,
+        "end": 14.008
+       },
+       {
+        "text": "Glim",
+        "start": 14.029,
+        "end": 14.423
+       },
+       {
+        "text": "the",
+        "start": 14.457,
+        "end": 14.773
+       },
+       {
+        "text": "firefly,",
+        "start": 14.8,
+        "end": 15.51
+       },
+       {
+        "text": "and",
+        "start": 15.571,
+        "end": 15.887
+       },
+       {
+        "text": "I",
+        "start": 15.914,
+        "end": 16.072
+       },
+       {
+        "text": "glow!",
+        "start": 16.086,
+        "end": 16.559
+       }
+      ]
+     }
+    ]
+   },
+   "metrics": {
+    "jevCalls": 4,
+    "jevMsTotal": 55,
+    "elevenChars": 0,
+    "claudeTokens": 0,
+    "cacheHits": 5,
+    "resolvedJevModel": "jev-1.14.0",
+    "ms": 0
+   },
+   "warnings": []
+  },
+  {
+   "sceneId": 2,
+   "index": 2,
+   "staging": {
+    "sceneId": 2,
+    "backdrop": "meadow",
+    "props": [
+     {
+      "id": "star_a",
+      "preset": "star",
+      "at": [
+       0.3,
+       0.12
+      ],
+      "size": 0.09,
+      "tappable": true,
+      "reaction": "glow"
+     },
+     {
+      "id": "star_b",
+      "preset": "star",
+      "at": [
+       0.55,
+       0.06
+      ],
+      "size": 0.07,
+      "tappable": true,
+      "reaction": "glow"
+     },
+     {
+      "id": "star_c",
+      "preset": "star",
+      "at": [
+       0.78,
+       0.16
+      ],
+      "size": 0.08,
+      "tappable": true,
+      "reaction": "glow"
+     },
+     {
+      "id": "moon",
+      "preset": "moon",
+      "at": [
+       0.88,
+       0.1
+      ],
+      "size": 0.16,
+      "tappable": true,
+      "reaction": "pop"
+     }
+    ],
+    "actions": [
+     {
+      "line": 0,
+      "at": 0,
+      "span": 0.8,
+      "action": {
+       "type": "enter",
+       "who": "ember",
+       "from": "left",
+       "to": [
+        0.3,
+        0.8
+       ]
+      }
+     },
+     {
+      "line": 0,
+      "at": 0.2,
+      "span": 0.8,
+      "action": {
+       "type": "enter",
+       "who": "glim",
+       "from": "right",
+       "to": [
+        0.58,
+        0.8
+       ]
+      }
+     },
+     {
+      "line": 1,
+      "at": 0,
+      "span": 0.4,
+      "action": {
+       "type": "prop",
+       "id": "star_a",
+       "do": "appear"
+      }
+     },
+     {
+      "line": 1,
+      "at": 0.25,
+      "span": 0.4,
+      "action": {
+       "type": "prop",
+       "id": "star_b",
+       "do": "appear"
+      }
+     },
+     {
+      "line": 1,
+      "at": 0.5,
+      "span": 0.4,
+      "action": {
+       "type": "prop",
+       "id": "star_c",
+       "do": "appear"
+      }
+     },
+     {
+      "line": 1,
+      "at": 0.1,
+      "span": 0.5,
+      "action": {
+       "type": "gesture",
+       "who": "glim",
+       "kind": "point"
+      }
+     },
+     {
+      "line": 2,
+      "at": 0,
+      "span": 0.6,
+      "action": {
+       "type": "gesture",
+       "who": "ember",
+       "kind": "jump"
+      }
+     },
+     {
+      "line": 3,
+      "at": 0,
+      "span": 0.6,
+      "action": {
+       "type": "gesture",
+       "who": "ember",
+       "kind": "point"
+      }
+     },
+     {
+      "line": 3,
+      "at": 0.4,
+      "span": 0.6,
+      "action": {
+       "type": "prop",
+       "id": "moon",
+       "do": "appear"
+      }
+     }
+    ]
+   },
+   "stagingSource": "cache",
+   "decisions": [
+    {
+     "agentId": "hush",
+     "intensity": 0,
+     "pause": "short",
+     "expression": "curious",
+     "emphasis": false,
+     "probabilities": {
+      "hush": 0.82,
+      "wonder": 0.06,
+      "shiver": 0.06,
+      "glow": 0.06
+     },
+     "latencyMs": 12,
+     "cacheHit": true,
+     "source": "jev"
+    },
+    {
+     "agentId": "glow",
+     "intensity": 1,
+     "pause": "short",
+     "expression": "happy",
+     "emphasis": false,
+     "probabilities": {
+      "hush": 0.06,
+      "wonder": 0.06,
+      "shiver": 0.06,
+      "glow": 0.82
+     },
+     "latencyMs": 15,
+     "cacheHit": true,
+     "source": "jev"
+    },
+    {
+     "agentId": "wonder",
+     "intensity": 2,
+     "pause": "short",
+     "expression": "happy",
+     "emphasis": true,
+     "probabilities": {
+      "hush": 0.06,
+      "wonder": 0.82,
+      "shiver": 0.06,
+      "glow": 0.06
+     },
+     "latencyMs": 11,
+     "cacheHit": true,
+     "source": "jev"
+    },
+    {
+     "agentId": "hush",
+     "intensity": 1,
+     "pause": "long",
+     "expression": "proud",
+     "emphasis": false,
+     "probabilities": {
+      "hush": 0.82,
+      "wonder": 0.06,
+      "shiver": 0.06,
+      "glow": 0.06
+     },
+     "latencyMs": 14,
+     "cacheHit": true,
+     "source": "jev"
+    }
+   ],
+   "performed": [
+    "[softly] Glim floated close, and the dark did not feel so big.",
+    "[reassuring] Look up, Ember. The dark is where the stars come out to play.",
+    "[delighted] Oh! They are sparkling, just like you!",
+    "[warmly] One by one, Ember counted the stars, and smiled."
+   ],
+   "audio": {
+    "provider": "draft",
+    "src": null,
+    "duration": 17.650000000000002,
+    "lines": [
+     {
+      "start": 0,
+      "end": 4.4,
+      "words": [
+       {
+        "text": "Glim",
+        "start": 0,
+        "end": 0.375
+       },
+       {
+        "text": "floated",
+        "start": 0.407,
+        "end": 1.007
+       },
+       {
+        "text": "close,",
+        "start": 1.059,
+        "end": 1.584
+       },
+       {
+        "text": "and",
+        "start": 1.63,
+        "end": 1.929
+       },
+       {
+        "text": "the",
+        "start": 1.956,
+        "end": 2.255
+       },
+       {
+        "text": "dark",
+        "start": 2.281,
+        "end": 2.656
+       },
+       {
+        "text": "did",
+        "start": 2.689,
+        "end": 2.989
+       },
+       {
+        "text": "not",
+        "start": 3.015,
+        "end": 3.315
+       },
+       {
+        "text": "feel",
+        "start": 3.341,
+        "end": 3.716
+       },
+       {
+        "text": "so",
+        "start": 3.748,
+        "end": 3.973
+       },
+       {
+        "text": "big.",
+        "start": 3.993,
+        "end": 4.367
+       }
+      ]
+     },
+     {
+      "start": 4.85,
+      "end": 10.05,
+      "words": [
+       {
+        "text": "Look",
+        "start": 4.85,
+        "end": 5.236
+       },
+       {
+        "text": "up,",
+        "start": 5.269,
+        "end": 5.578
+       },
+       {
+        "text": "Ember.",
+        "start": 5.605,
+        "end": 6.145
+       },
+       {
+        "text": "The",
+        "start": 6.192,
+        "end": 6.501
+       },
+       {
+        "text": "dark",
+        "start": 6.527,
+        "end": 6.913
+       },
+       {
+        "text": "is",
+        "start": 6.947,
+        "end": 7.178
+       },
+       {
+        "text": "where",
+        "start": 7.198,
+        "end": 7.661
+       },
+       {
+        "text": "the",
+        "start": 7.702,
+        "end": 8.01
+       },
+       {
+        "text": "stars",
+        "start": 8.037,
+        "end": 8.5
+       },
+       {
+        "text": "come",
+        "start": 8.54,
+        "end": 8.926
+       },
+       {
+        "text": "out",
+        "start": 8.96,
+        "end": 9.268
+       },
+       {
+        "text": "to",
+        "start": 9.295,
+        "end": 9.527
+       },
+       {
+        "text": "play.",
+        "start": 9.547,
+        "end": 10.01
+       }
+      ]
+     },
+     {
+      "start": 10.5,
+      "end": 13.3,
+      "words": [
+       {
+        "text": "Oh!",
+        "start": 10.5,
+        "end": 10.764
+       },
+       {
+        "text": "They",
+        "start": 10.787,
+        "end": 11.117
+       },
+       {
+        "text": "are",
+        "start": 11.146,
+        "end": 11.41
+       },
+       {
+        "text": "sparkling,",
+        "start": 11.433,
+        "end": 12.16
+       },
+       {
+        "text": "just",
+        "start": 12.223,
+        "end": 12.553
+       },
+       {
+        "text": "like",
+        "start": 12.582,
+        "end": 12.912
+       },
+       {
+        "text": "you!",
+        "start": 12.941,
+        "end": 13.271
+       }
+      ]
+     },
+     {
+      "start": 13.75,
+      "end": 17.35,
+      "words": [
+       {
+        "text": "One",
+        "start": 13.75,
+        "end": 14.02
+       },
+       {
+        "text": "by",
+        "start": 14.044,
+        "end": 14.247
+       },
+       {
+        "text": "one,",
+        "start": 14.264,
+        "end": 14.602
+       },
+       {
+        "text": "Ember",
+        "start": 14.632,
+        "end": 15.037
+       },
+       {
+        "text": "counted",
+        "start": 15.072,
+        "end": 15.613
+       },
+       {
+        "text": "the",
+        "start": 15.66,
+        "end": 15.931
+       },
+       {
+        "text": "stars,",
+        "start": 15.954,
+        "end": 16.427
+       },
+       {
+        "text": "and",
+        "start": 16.468,
+        "end": 16.739
+       },
+       {
+        "text": "smiled.",
+        "start": 16.762,
+        "end": 17.303
+       }
+      ]
+     }
+    ]
+   },
+   "metrics": {
+    "jevCalls": 4,
+    "jevMsTotal": 52,
+    "elevenChars": 0,
+    "claudeTokens": 0,
+    "cacheHits": 5,
+    "resolvedJevModel": "jev-1.14.0",
+    "ms": 0
+   },
+   "warnings": []
+  },
+  {
+   "sceneId": 3,
+   "index": 3,
+   "staging": {
+    "sceneId": 3,
+    "backdrop": "cave",
+    "props": [
+     {
+      "id": "bed",
+      "preset": "bed",
+      "at": [
+       0.62,
+       0.86
+      ],
+      "size": 0.2,
+      "tappable": true,
+      "reaction": "wiggle"
+     },
+     {
+      "id": "lantern",
+      "preset": "lantern",
+      "at": [
+       0.14,
+       0.7
+      ],
+      "size": 0.16,
+      "tappable": true,
+      "reaction": "glow"
+     }
+    ],
+    "actions": [
+     {
+      "line": 0,
+      "at": 0,
+      "span": 1,
+      "action": {
+       "type": "enter",
+       "who": "ember",
+       "from": "right",
+       "to": [
+        0.62,
+        0.8
+       ]
+      }
+     },
+     {
+      "line": 1,
+      "at": 0,
+      "span": 0.8,
+      "action": {
+       "type": "enter",
+       "who": "glim",
+       "from": "left",
+       "to": [
+        0.34,
+        0.8
+       ]
+      }
+     },
+     {
+      "line": 1,
+      "at": 0.7,
+      "span": 0.3,
+      "action": {
+       "type": "gesture",
+       "who": "glim",
+       "kind": "wave"
+      }
+     },
+     {
+      "line": 2,
+      "at": 0,
+      "span": 0.6,
+      "action": {
+       "type": "look_at",
+       "who": "ember",
+       "target": "glim"
+      }
+     },
+     {
+      "line": 2,
+      "at": 0.4,
+      "span": 0.6,
+      "action": {
+       "type": "gesture",
+       "who": "ember",
+       "kind": "hug"
+      }
+     },
+     {
+      "line": 3,
+      "at": 0,
+      "span": 0.7,
+      "action": {
+       "type": "camera",
+       "focus": [
+        0.55,
+        0.65
+       ],
+       "zoom": 1.25
+      }
+     },
+     {
+      "line": 3,
+      "at": 0.2,
+      "span": 0.8,
+      "action": {
+       "type": "gesture",
+       "who": "ember",
+       "kind": "sleep"
+      }
+     }
+    ]
+   },
+   "stagingSource": "cache",
+   "decisions": [
+    {
+     "agentId": "hush",
+     "intensity": 0,
+     "pause": "short",
+     "expression": "sleepy",
+     "emphasis": false,
+     "probabilities": {
+      "hush": 0.82,
+      "wonder": 0.06,
+      "shiver": 0.06,
+      "glow": 0.06
+     },
+     "latencyMs": 13,
+     "cacheHit": true,
+     "source": "jev"
+    },
+    {
+     "agentId": "glow",
+     "intensity": 0,
+     "pause": "short",
+     "expression": "happy",
+     "emphasis": false,
+     "probabilities": {
+      "hush": 0.06,
+      "wonder": 0.06,
+      "shiver": 0.06,
+      "glow": 0.82
+     },
+     "latencyMs": 12,
+     "cacheHit": true,
+     "source": "jev"
+    },
+    {
+     "agentId": "hush",
+     "intensity": 0,
+     "pause": "short",
+     "expression": "sleepy",
+     "emphasis": false,
+     "probabilities": {
+      "hush": 0.82,
+      "wonder": 0.06,
+      "shiver": 0.06,
+      "glow": 0.06
+     },
+     "latencyMs": 14,
+     "cacheHit": true,
+     "source": "jev"
+    },
+    {
+     "agentId": "hush",
+     "intensity": 0,
+     "pause": "long",
+     "expression": "sleepy",
+     "emphasis": true,
+     "probabilities": {
+      "hush": 0.82,
+      "wonder": 0.06,
+      "shiver": 0.06,
+      "glow": 0.06
+     },
+     "latencyMs": 15,
+     "cacheHit": true,
+     "source": "jev"
+    }
+   ],
+   "performed": [
+    "[softly] Back home in the cozy cave, Ember curled up in bed.",
+    "[kindly] Goodnight, Ember. I will glow right here, by your side.",
+    "[softly] Goodnight, Glim. The dark is not so scary now.",
+    "[softly] And the little dragon fell fast asleep, under a sky full of friends."
+   ],
+   "audio": {
+    "provider": "draft",
+    "src": null,
+    "duration": 18.85,
+    "lines": [
+     {
+      "start": 0,
+      "end": 4.4,
+      "words": [
+       {
+        "text": "Back",
+        "start": 0,
+        "end": 0.389
+       },
+       {
+        "text": "home",
+        "start": 0.423,
+        "end": 0.812
+       },
+       {
+        "text": "in",
+        "start": 0.846,
+        "end": 1.08
+       },
+       {
+        "text": "the",
+        "start": 1.1,
+        "end": 1.411
+       },
+       {
+        "text": "cozy",
+        "start": 1.438,
+        "end": 1.828
+       },
+       {
+        "text": "cave,",
+        "start": 1.862,
+        "end": 2.329
+       },
+       {
+        "text": "Ember",
+        "start": 2.369,
+        "end": 2.836
+       },
+       {
+        "text": "curled",
+        "start": 2.877,
+        "end": 3.422
+       },
+       {
+        "text": "up",
+        "start": 3.469,
+        "end": 3.703
+       },
+       {
+        "text": "in",
+        "start": 3.723,
+        "end": 3.957
+       },
+       {
+        "text": "bed.",
+        "start": 3.977,
+        "end": 4.366
+       }
+      ]
+     },
+     {
+      "start": 4.85,
+      "end": 8.85,
+      "words": [
+       {
+        "text": "Goodnight,",
+        "start": 4.85,
+        "end": 5.573
+       },
+       {
+        "text": "Ember.",
+        "start": 5.636,
+        "end": 6.096
+       },
+       {
+        "text": "I",
+        "start": 6.136,
+        "end": 6.267
+       },
+       {
+        "text": "will",
+        "start": 6.279,
+        "end": 6.607
+       },
+       {
+        "text": "glow",
+        "start": 6.636,
+        "end": 6.964
+       },
+       {
+        "text": "right",
+        "start": 6.993,
+        "end": 7.387
+       },
+       {
+        "text": "here,",
+        "start": 7.421,
+        "end": 7.816
+       },
+       {
+        "text": "by",
+        "start": 7.85,
+        "end": 8.047
+       },
+       {
+        "text": "your",
+        "start": 8.064,
+        "end": 8.393
+       },
+       {
+        "text": "side.",
+        "start": 8.421,
+        "end": 8.816
+       }
+      ]
+     },
+     {
+      "start": 9.3,
+      "end": 12.9,
+      "words": [
+       {
+        "text": "Goodnight,",
+        "start": 9.3,
+        "end": 10.075
+       },
+       {
+        "text": "Glim.",
+        "start": 10.143,
+        "end": 10.565
+       },
+       {
+        "text": "The",
+        "start": 10.602,
+        "end": 10.884
+       },
+       {
+        "text": "dark",
+        "start": 10.909,
+        "end": 11.261
+       },
+       {
+        "text": "is",
+        "start": 11.291,
+        "end": 11.503
+       },
+       {
+        "text": "not",
+        "start": 11.521,
+        "end": 11.803
+       },
+       {
+        "text": "so",
+        "start": 11.828,
+        "end": 12.039
+       },
+       {
+        "text": "scary",
+        "start": 12.057,
+        "end": 12.48
+       },
+       {
+        "text": "now.",
+        "start": 12.517,
+        "end": 12.869
+       }
+      ]
+     },
+     {
+      "start": 13.35,
+      "end": 18.55,
+      "words": [
+       {
+        "text": "And",
+        "start": 13.35,
+        "end": 13.627
+       },
+       {
+        "text": "the",
+        "start": 13.651,
+        "end": 13.929
+       },
+       {
+        "text": "little",
+        "start": 13.953,
+        "end": 14.438
+       },
+       {
+        "text": "dragon",
+        "start": 14.48,
+        "end": 14.966
+       },
+       {
+        "text": "fell",
+        "start": 15.008,
+        "end": 15.355
+       },
+       {
+        "text": "fast",
+        "start": 15.385,
+        "end": 15.731
+       },
+       {
+        "text": "asleep,",
+        "start": 15.762,
+        "end": 16.316
+       },
+       {
+        "text": "under",
+        "start": 16.364,
+        "end": 16.78
+       },
+       {
+        "text": "a",
+        "start": 16.817,
+        "end": 16.955
+       },
+       {
+        "text": "sky",
+        "start": 16.967,
+        "end": 17.245
+       },
+       {
+        "text": "full",
+        "start": 17.269,
+        "end": 17.616
+       },
+       {
+        "text": "of",
+        "start": 17.646,
+        "end": 17.854
+       },
+       {
+        "text": "friends.",
+        "start": 17.872,
+        "end": 18.496
+       }
+      ]
+     }
+    ]
+   },
+   "metrics": {
+    "jevCalls": 4,
+    "jevMsTotal": 54,
+    "elevenChars": 0,
+    "claudeTokens": 0,
+    "cacheHits": 5,
+    "resolvedJevModel": "jev-1.14.0",
+    "ms": 0
+   },
+   "warnings": []
+  }
+ ]
+}
